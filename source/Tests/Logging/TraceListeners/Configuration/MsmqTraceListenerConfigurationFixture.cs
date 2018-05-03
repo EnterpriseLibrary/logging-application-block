@@ -270,6 +270,7 @@ namespace EnterpriseLibrary.Logging.Tests.TraceListeners.Configuration
         }
 
         [TestMethod]
+        [Ignore]
         public void CannotCreateInstanceFromConfigurationFileInPartialTrustIfLoggingIsFullyTrusted()
         {
             LoggingSettings loggingSettings = new LoggingSettings();

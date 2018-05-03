@@ -25,11 +25,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)')" />
-    <PackageReference Include="EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)')" />
+    <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
+    <PackageReference Include="EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
-    <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)')" />
-    <PackageReference Include="EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)')" />
+    <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)') AND '$(EntLibDependencyType)' == 'Project'" />
+    <PackageReference Include="EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="..\..\Src\Logging\Logging.csproj" />
     <ProjectReference Include="..\..\Src\DatabaseTraceListener\Logging.Database.csproj" />

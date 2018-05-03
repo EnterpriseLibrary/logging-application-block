@@ -7,6 +7,7 @@ using EnterpriseLibrary.Logging.Configuration;
 
 
 [assembly: AllowPartiallyTrustedCallers]
+[assembly: SecurityRules(SecurityRuleSet.Level1)]
 
 [assembly: ComVisible(false)]
 

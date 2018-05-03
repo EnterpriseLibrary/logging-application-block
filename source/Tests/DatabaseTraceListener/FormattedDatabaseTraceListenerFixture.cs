@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
+using System.Configuration;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -15,8 +16,8 @@ namespace EnterpriseLibrary.Logging.Database.Tests
     [TestClass]
     public class FormattedDatabaseTraceListenerFixture
     {
-        public const string connectionString = @"server=(localdb)\v11.0;database=Logging;Integrated Security=true";
-        public const string wrongConnectionString = @"server=(localdb)\v11.0;database=Northwind;Integrated Security=true";
+        public readonly string connectionString = String.Format(@"server={0};database=Logging;Integrated Security=true", ConfigurationManager.AppSettings["SqlServerDatabaseInstance"]);
+        public readonly string wrongConnectionString = String.Format(@"server={0};database=Northwind;Integrated Security=true", ConfigurationManager.AppSettings["SqlServerDatabaseInstance"]);
 
         void ClearLogs()
         {

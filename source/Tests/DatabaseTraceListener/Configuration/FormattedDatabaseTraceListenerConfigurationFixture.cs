@@ -133,7 +133,7 @@ namespace EnterpriseLibrary.Logging.Database.Tests.Configuration
             Assert.AreEqual(SourceLevels.Information, ((EventTypeFilter)listener.Filter).EventType);
             Assert.AreEqual("WriteLog", listener.WriteLogStoredProcName);
             Assert.AreEqual("AddCategory", listener.AddCategoryStoredProcName);
-            Assert.AreEqual(@"server=(localdb)\v11.0;database=Logging;Integrated Security=true", listener.Database.ConnectionString);
+            Assert.AreEqual(String.Format(@"server={0};database=Logging;Integrated Security=true", ConfigurationManager.AppSettings["SqlServerDatabaseInstance"]), listener.Database.ConnectionString);
             Assert.IsNotNull(listener.Formatter);
             Assert.AreEqual(listener.Formatter.GetType(), typeof(TextFormatter));
             Assert.AreEqual("some template", ((TextFormatter)listener.Formatter).Template);

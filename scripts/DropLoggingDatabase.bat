@@ -1,0 +1,1 @@
+sqlcmd -S (local)\SQL2016 -i %~dp0\DropLoggingDatabase.sql
