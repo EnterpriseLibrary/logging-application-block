@@ -20,7 +20,7 @@
     <PackageTags>entlib entlib6 Enterprise Library data daab dab logging lab LOB futures OSS</PackageTags>
 
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\Logging\Logging.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\EntepriseLibrary.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
 
