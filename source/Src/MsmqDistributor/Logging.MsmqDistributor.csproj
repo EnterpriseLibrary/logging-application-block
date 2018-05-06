@@ -47,8 +47,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Management" />
-	<Reference Include="System.Messaging" />
-	<Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.ServiceProcess" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,22 +71,22 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-	
-	<EmbeddedResource Update="DistributorService.resx">
+
+    <EmbeddedResource Update="DistributorService.resx">
       <DependentUpon>DistributorService.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-	
+
     <EmbeddedResource Update="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-	
-	<Compile Update="DistributorService.cs">
+
+    <Compile Update="DistributorService.cs">
       <SubType>Component</SubType>
     </Compile>
-	
-	<None Include="App.config">
+
+    <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

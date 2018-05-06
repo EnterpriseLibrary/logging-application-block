@@ -17,6 +17,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <SystemConfigurationConfigurationManagerVersion>4.4.*</SystemConfigurationConfigurationManagerVersion>
+    <SystemSecurityPermissionsVersion>4.4.*</SystemSecurityPermissionsVersion>
+    <SystemSecurityPrincipalWindowsVersion>4.4.*</SystemSecurityPrincipalWindowsVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <!--In order to debug the EntLib dependencies open 'Logging (With Dependencies).sln' and change 'EntLibDependencyType' value to Project -->
     <EntLibDependencyType>Package</EntLibDependencyType>
     <EntLibCommonVersion>6.1.*</EntLibCommonVersion>
