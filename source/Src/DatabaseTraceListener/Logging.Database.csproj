@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyName>EnterpriseLibrary.Logging.Database</AssemblyName>
-    <RootNamespace>EnterpriseLibrary.Logging.Database</RootNamespace>
+    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging.Database</AssemblyName>
+    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging.Database</RootNamespace>
     <AssemblyTitle>Enterprise Library Logging Application Block Database Provider</AssemblyTitle>
 
-    <PackageId>EnterpriseLibrary.Logging.Database</PackageId>
+    <PackageId>Microsoft.Practices.EnterpriseLibrary.Logging.Database</PackageId>
     <Title>Logging Application Block Database Provider</Title>
     <Description>This logging provider lets developer use the Data Access Application Block to store log entries.</Description>
     <Summary>This logging provider lets developer use the Data Access Application Block to store log entries.</Summary>
@@ -31,10 +31,10 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="..\Logging\Logging.csproj" />
   </ItemGroup>
@@ -111,7 +111,7 @@
     <DocumentationFile>$(SolutionDir)..\bin\Debug\$(AssemblyName).xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\Microsoft.Practices.EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

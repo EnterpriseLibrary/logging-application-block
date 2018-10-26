@@ -1,9 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace EnterpriseLibrary.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging
 {
     /// <summary>
     /// Used by <see cref="LogSource"/>s to keep the knowledge of which <see cref="TraceListeners"/> have been 

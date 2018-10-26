@@ -1,21 +1,21 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Threading;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.Instrumentation;
-using EnterpriseLibrary.Common.TestSupport;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Filters;
-using EnterpriseLibrary.Logging.Tests.Properties;
-using EnterpriseLibrary.Logging.TestSupport;
-using EnterpriseLibrary.Logging.TestSupport.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation;
+using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 {
     [TestClass]
     public class TracerFixture
@@ -79,7 +79,7 @@ namespace EnterpriseLibrary.Logging.Tests
         [TestMethod]
         public void TraceListenerWritesFullTypeNameAndMethodName()
         {
-            string MyTypeAndMethodName = "EnterpriseLibrary.Logging.Tests.TracerFixture.TraceListenerWritesFullTypeNameAndMethodName";
+            string MyTypeAndMethodName = "Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerFixture.TraceListenerWritesFullTypeNameAndMethodName";
 
             MockTraceListener.Reset();
 

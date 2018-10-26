@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnterpriseLibrary.Logging.BVT.TestObjects
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects
 {
     public class NonSerializableCollection : ICollection<string>
     {

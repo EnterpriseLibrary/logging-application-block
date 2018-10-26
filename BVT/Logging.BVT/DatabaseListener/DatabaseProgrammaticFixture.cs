@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -7,18 +7,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.Configuration.Fluent;
-using EnterpriseLibrary.Data;
-using EnterpriseLibrary.Data.Sql;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Database;
-using EnterpriseLibrary.Logging.Filters;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Database;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.DatabaseListener
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.DatabaseListener
 {
     [TestClass]
     public class DatabaseProgrammaticFixture : LoggingFixtureBase

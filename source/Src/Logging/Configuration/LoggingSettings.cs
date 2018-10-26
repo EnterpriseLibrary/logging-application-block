@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -7,11 +7,11 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.Configuration.Design;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Design;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 
-namespace EnterpriseLibrary.Logging.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Configuration
 {
     /// <summary>
     /// Configuration settings for client-side logging applications.
@@ -156,7 +156,7 @@ namespace EnterpriseLibrary.Logging.Configuration
 
         /// <summary>
         /// Gets the collection of <see cref="FormatterData"/> configuration elements that define 
-        /// the available <see cref="EnterpriseLibrary.Logging.Formatters.ILogFormatter"/>s.
+        /// the available <see cref="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.ILogFormatter"/>s.
         /// </summary>
         [ConfigurationProperty(formatterDataCollectionProperty)]
         [ConfigurationCollection(typeof(FormatterData))]
@@ -172,7 +172,7 @@ namespace EnterpriseLibrary.Logging.Configuration
 
         /// <summary>
         /// Gets the collection of <see cref="LogFilterData"/> configuration elements that define 
-        /// the available <see cref="EnterpriseLibrary.Logging.Filters.ILogFilter"/>s.
+        /// the available <see cref="Microsoft.Practices.EnterpriseLibrary.Logging.Filters.ILogFilter"/>s.
         /// </summary>
         [ConfigurationProperty(logFiltersProperty)]
         [ConfigurationCollection(typeof(LogFilterData))]

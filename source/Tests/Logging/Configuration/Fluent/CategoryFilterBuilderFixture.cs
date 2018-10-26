@@ -1,17 +1,17 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EnterpriseLibrary.Common.TestSupport.ContextBase;
-using EnterpriseLibrary.Common.Configuration.Fluent;
-using EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport.ContextBase;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 
-namespace EnterpriseLibrary.Logging.Tests.Configuration.Fluent
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Configuration.Fluent
 {
     public abstract class Given_CategoryFilterBuilder : Given_LoggingSettingsInConfigurationSourceBuilder
     {

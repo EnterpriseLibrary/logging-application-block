@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Configuration
 {
     [TestClass]
     public class ReconfigurationFixture : LoggingFixtureBase

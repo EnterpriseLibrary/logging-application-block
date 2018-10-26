@@ -1,13 +1,13 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Filters;
-using EnterpriseLibrary.Logging.Filters.Tests;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Tests.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Configuration
 {
     [TestClass]
     public class GivenPriorityFilterData

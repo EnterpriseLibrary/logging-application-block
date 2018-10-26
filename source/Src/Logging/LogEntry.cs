@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -11,10 +11,10 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Xml.Serialization;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 
-namespace EnterpriseLibrary.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging
 {
     /// <summary>
     /// Represents a log message.  Contains the common properties that are required for all log messages.

@@ -1,12 +1,12 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 
-namespace EnterpriseLibrary.Logging.Formatters
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters
 {
     /// <summary>
     /// Log formatter that will format a <see cref="LogEntry"/> in a way suitable for wire transmission.

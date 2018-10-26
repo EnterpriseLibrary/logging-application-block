@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Concurrent;
@@ -6,10 +6,10 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
-using EnterpriseLibrary.Common.Utility;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 
-namespace EnterpriseLibrary.Logging.TraceListeners
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
 {
     /// <summary>
     /// Trace listener that wraps a normal trace listener to perform asynchronous tracing requests.

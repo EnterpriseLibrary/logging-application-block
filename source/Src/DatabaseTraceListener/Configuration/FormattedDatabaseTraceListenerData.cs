@@ -1,14 +1,14 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.Configuration;
 using System.Diagnostics;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.Configuration.Design;
-using EnterpriseLibrary.Data;
-using EnterpriseLibrary.Data.Configuration;
-using EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Design;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Data.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 
-namespace EnterpriseLibrary.Logging.Database.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration
 {
     /// <summary>
     /// Configuration object for a <see cref="FormattedDatabaseTraceListener"/>.

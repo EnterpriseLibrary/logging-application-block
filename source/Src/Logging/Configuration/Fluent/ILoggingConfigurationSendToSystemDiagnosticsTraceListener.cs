@@ -1,10 +1,10 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
-using EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using System.Diagnostics;
 
-namespace EnterpriseLibrary.Common.Configuration.Fluent
+namespace Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent
 {
     /// <summary>
     /// Fluent interface used to configure a <see cref="System.Diagnostics.TraceListener"/> instance.

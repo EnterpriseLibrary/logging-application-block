@@ -1,17 +1,17 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Configuration;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Data;
-using EnterpriseLibrary.Data.Sql;
-using EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Database.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 {
     [TestClass]
     public class FormattedDatabaseTraceListenerFixture

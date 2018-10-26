@@ -1,8 +1,8 @@
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 
-namespace EnterpriseLibrary.Logging.BVT.TestObjects
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects
 {
     [ConfigurationElementType(typeof(CustomTraceListenerData))]
     public class MyCustomTraceListener : CustomTraceListener

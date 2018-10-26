@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -7,10 +7,10 @@ using System.Globalization;
 using System.Reflection;
 using System.Security;
 using System.Security.Permissions;
-using EnterpriseLibrary.Common.Utility;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 
-namespace EnterpriseLibrary.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging
 {
     /// <summary>
     /// Represents a performance tracing class to log method entry/exit and duration.

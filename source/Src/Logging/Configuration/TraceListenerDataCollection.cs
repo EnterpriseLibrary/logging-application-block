@@ -1,13 +1,13 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Configuration;
 using System.Xml;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 using System.Globalization;
 
-namespace EnterpriseLibrary.Logging.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Configuration
 {
     /// <summary>
     /// Custom <see cref="PolymorphicConfigurationElementCollection{T}"/> that deals with <see cref="TraceListenerData"/>.

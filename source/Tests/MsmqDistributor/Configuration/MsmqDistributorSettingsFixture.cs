@@ -1,10 +1,10 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor.Configuration.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Configuration.Tests
 {
     [TestClass]
     public class MsmqDistributorSettingsFixture

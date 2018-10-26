@@ -1,15 +1,15 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.Database;
-using EnterpriseLibrary.Logging.Database.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Database;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration;
 
-namespace EnterpriseLibrary.Common.Configuration.Fluent
+namespace Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent
 {
     /// <summary>
     /// Fluent interface used to configure a <see cref="FormattedDatabaseTraceListener"/> instance.

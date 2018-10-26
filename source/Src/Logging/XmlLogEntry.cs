@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.XPath;
 
-namespace EnterpriseLibrary.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging
 {
     /// <summary>
     /// Extends the <see cref="LogEntry"/> to add XML support.

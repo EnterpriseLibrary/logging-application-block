@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 
-namespace EnterpriseLibrary.Logging.BVT.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Logging
 {
     [TestClass]
     public class LogWriterNoConfigurationFixture : EntLibFixtureBase

@@ -1,11 +1,11 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Globalization;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 
-namespace EnterpriseLibrary.Common.Configuration.Fluent
+namespace Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent
 {
     /// <summary/>
     public abstract class LoggingConfigurationExtension : ILoggingConfigurationOptions, ILoggingConfigurationExtension

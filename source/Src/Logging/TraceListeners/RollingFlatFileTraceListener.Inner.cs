@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Globalization;
@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace EnterpriseLibrary.Logging.TraceListeners
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
 {
     public partial class RollingFlatFileTraceListener
     {

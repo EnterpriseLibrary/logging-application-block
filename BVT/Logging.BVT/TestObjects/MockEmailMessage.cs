@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 
-namespace EnterpriseLibrary.Logging.BVT.TestObjects
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects
 {
     public class MockEmailMessage : EmailMessage
     {

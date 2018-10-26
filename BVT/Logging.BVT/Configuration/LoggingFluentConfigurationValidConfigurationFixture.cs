@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.Configuration.Fluent;
-using EnterpriseLibrary.Logging.BVT.TestObjects;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Database.Configuration;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
+using Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Configuration
 {
     [TestClass]
     public class LoggingFluentConfigurationValidConfigurationFixture : LoggingFixtureBase

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
-using EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EntLibTracer = EnterpriseLibrary.Logging;
+using EntLibTracer = Microsoft.Practices.EnterpriseLibrary.Logging;
 
-namespace EnterpriseLibrary.Logging.BVT.Tracer
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Tracer
 {
     [TestClass]
     public class TracerFixture : LoggingFixtureBase

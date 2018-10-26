@@ -1,14 +1,14 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using System;
 using System.Diagnostics;
 using System.Threading;
-using EnterpriseLibrary.Common.Utility;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 
-namespace EnterpriseLibrary.Logging.TraceListeners
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
 {
     /// <summary>
     /// Performs logging to a file and rolls the output file when either time or size thresholds are 

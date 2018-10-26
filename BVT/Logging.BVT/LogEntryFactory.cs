@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 
-namespace EnterpriseLibrary.Logging.BVT
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT
 {
     public class LogEntryFactory
     {

@@ -1,8 +1,8 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics;
 
-namespace EnterpriseLibrary.Logging.ExtraInformation.Helpers
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Helpers
 {
     /// <summary>
     /// Contract for accessing debug information.

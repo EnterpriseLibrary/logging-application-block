@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 
-namespace EnterpriseLibrary.Logging.BVT.TestObjects
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects
 {
     public class MockDateTimeProvider : RollingFlatFileTraceListener.DateTimeProvider
     {

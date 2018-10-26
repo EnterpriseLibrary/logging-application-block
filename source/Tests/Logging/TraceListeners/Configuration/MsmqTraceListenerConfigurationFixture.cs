@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -9,16 +9,16 @@ using System.Messaging;
 using System.Security;
 using System.Security.Permissions;
 using System.Security.Policy;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.TestSupport.Configuration;
-using EnterpriseLibrary.Common.Utility;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.TestSupport;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Tests.TraceListeners.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Configuration
 {
     [TestClass]
     public class MsmqTraceListenerConfigurationFixture

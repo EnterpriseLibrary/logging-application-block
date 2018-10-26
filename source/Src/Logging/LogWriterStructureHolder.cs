@@ -1,11 +1,11 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
-using EnterpriseLibrary.Common.Utility;
-using EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 
-namespace EnterpriseLibrary.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging
 {
     /// <summary>
     /// This type supports the Enterprise Library infrastructure and is not intended to be used directly from your code.

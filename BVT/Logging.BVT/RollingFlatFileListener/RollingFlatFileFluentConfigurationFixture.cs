@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.Configuration.Fluent;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.RollingFlatFileListener
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.RollingFlatFileListener
 {
     [TestClass]
     public class RollingFlatFileFluentConfigurationFixture : LoggingFixtureBase
@@ -50,7 +50,7 @@ namespace EnterpriseLibrary.Logging.BVT.RollingFlatFileListener
                             .RollingFile(ListenerName)
                             .ToFile(FilePath)
                             .RollAfterSize(100)
-                            .RollEvery(EnterpriseLibrary.Logging.TraceListeners.RollInterval.Day)
+                            .RollEvery(Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollInterval.Day)
                             .UseTimeStampPattern("ddmmyyyy")
                             .CleanUpArchivedFilesWhenMoreThan(5)
                             .WithFooter(Footer)
@@ -238,7 +238,7 @@ namespace EnterpriseLibrary.Logging.BVT.RollingFlatFileListener
                             .RollingFile(ListenerName)
                             .ToFile(FilePath)
                             .RollAfterSize(100)
-                            .RollEvery(EnterpriseLibrary.Logging.TraceListeners.RollInterval.Day)
+                            .RollEvery(Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollInterval.Day)
                             .UseTimeStampPattern("ddmmyyyy")
                             .CleanUpArchivedFilesWhenMoreThan(5)
                             .WithFooter(Footer)

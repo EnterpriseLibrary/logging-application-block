@@ -1,9 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
-using EnterpriseLibrary.Logging.MsmqDistributor;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor;
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Tests
 {
     internal class MockMsmqListener : MsmqListener
     {

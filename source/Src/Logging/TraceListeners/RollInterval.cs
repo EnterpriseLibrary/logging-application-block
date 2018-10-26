@@ -1,6 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-namespace EnterpriseLibrary.Logging.TraceListeners
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
 {
     /// <summary>
     /// Defines the frequency when the file need to be rolled.

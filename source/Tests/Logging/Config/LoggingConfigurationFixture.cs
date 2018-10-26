@@ -1,15 +1,15 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
 using System.Linq;
-using EnterpriseLibrary.Logging.Filters;
-using EnterpriseLibrary.Logging.Tests.TestSupport;
-using EnterpriseLibrary.Logging.TestSupport.TraceListeners;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Tests.Config
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Config
 {
     [TestClass]
     public class LoggingConfigurationFixture

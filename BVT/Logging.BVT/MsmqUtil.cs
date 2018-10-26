@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -6,10 +6,10 @@ using System.Linq;
 using System.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT
 {
     public static class MsmqUtil
     {

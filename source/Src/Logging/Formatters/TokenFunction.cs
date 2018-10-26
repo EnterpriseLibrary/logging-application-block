@@ -1,9 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Text;
 
-namespace EnterpriseLibrary.Logging.Formatters
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters
 {
     /// <summary>
     /// Abstract base for all <see cref="TokenFunction"></see>-derived classes. 

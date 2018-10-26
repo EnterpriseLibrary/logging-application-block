@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Diagnostics;
-using EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT
 {
     [TestClass]
     public class DistributorEventLoggerFixture

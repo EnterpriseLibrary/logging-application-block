@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using EnterpriseLibrary.Logging.BVT.TestObjects;
+using System.Linq;
+using Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Extensibility
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Extensibility
 {
     [TestClass]
     public class CustomTraceListenerFixture : EntLibFixtureBase

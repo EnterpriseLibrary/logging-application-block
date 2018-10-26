@@ -1,12 +1,12 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.Management.Instrumentation;
 using System.Xml;
-using EnterpriseLibrary.Logging.Tests;
-using EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Tests;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Formatters.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
 {
     /// <summary>
     /// Summary description for LogEntryXmlFixture

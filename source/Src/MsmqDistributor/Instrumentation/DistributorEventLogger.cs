@@ -1,12 +1,12 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
-using EnterpriseLibrary.Logging.MsmqDistributor.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Properties;
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation
 {
     /// <summary>
     /// Represents an event logger for the distributor Windows service.

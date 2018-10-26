@@ -1,9 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnterpriseLibrary.Logging.Formatters
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters
 {
     /// <summary>
     /// Formats an instance for <typeparamref name="T"/> with a sequence of <see cref="Formatter{T}"/> instances.

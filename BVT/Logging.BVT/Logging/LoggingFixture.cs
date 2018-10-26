@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using EnterpriseLibrary.Logging.BVT.TestObjects;
+using Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Logging
 {
     [TestClass]
     public class LoggingFixture : LoggingFixtureBase

@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Messaging;
 using System.Text.RegularExpressions;
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Json
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Json
 {
     [TestClass]
     public class JsonLogFormatterFixture : LoggingFixtureBase

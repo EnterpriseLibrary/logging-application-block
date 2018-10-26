@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyName>EnterpriseLibrary.Logging</AssemblyName>
-    <RootNamespace>EnterpriseLibrary.Logging</RootNamespace>
+    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging</AssemblyName>
+    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging</RootNamespace>
     <AssemblyTitle>Enterprise Library Logging Application Block</AssemblyTitle>
 
-    <PackageId>EnterpriseLibrary.Logging</PackageId>
+    <PackageId>Microsoft.Practices.EnterpriseLibrary.Logging</PackageId>
     <Title>Logging Application Block</Title>
     <Description>The Logging Application Block simplifies logging to various destinations (file, database, event log, MSMQ etc.) and tracing.</Description>
     <Summary>The Logging Application Block simplifies logging to various destinations (file, database, event log, MSMQ etc.) and tracing.</Summary>
@@ -30,9 +30,9 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
-    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
@@ -121,16 +121,16 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)..\bin\Debug\</OutputPath>
+    <OutputPath>D:\Projects\ConvertedEntlib\logging\source\..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WMINET10</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunFxCop>false</RunFxCop>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>$(SolutionDir)..\bin\Debug\$(AssemblyName).xml</DocumentationFile>
+    <DocumentationFile>D:\Projects\ConvertedEntlib\logging\source\..\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.xml</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\Microsoft.Practices.EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

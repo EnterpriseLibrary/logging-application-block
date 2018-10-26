@@ -1,13 +1,13 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
 using System.Linq;
-using EnterpriseLibrary.Common.TestSupport;
-using EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
+using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Tests
 {
     [TestClass]
     public class DistributorEventLoggerFixture

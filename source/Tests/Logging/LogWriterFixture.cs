@@ -1,13 +1,13 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
-using EnterpriseLibrary.Logging.Filters;
-using EnterpriseLibrary.Logging.Tests.TestSupport;
-using EnterpriseLibrary.Logging.TestSupport.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 {
     /// <summary>
     /// Summary description for LogWriterFixture

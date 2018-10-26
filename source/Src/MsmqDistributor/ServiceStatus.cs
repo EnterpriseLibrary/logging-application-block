@@ -1,6 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor
 {
     /// <summary>
     /// The Service status enum (as byte)

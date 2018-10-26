@@ -1,4 +1,4 @@
-﻿//===============================================================================
+//===============================================================================
 // Microsoft patterns & practices Enterprise Library
 // Logging Application Block
 //===============================================================================
@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace EnterpriseLibrary.Logging.BVT.TestObjects
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects
 {
     public class MockTraceListener : TraceListener
     {

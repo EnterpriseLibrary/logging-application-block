@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Security.Permissions;
 using System.Security;
 
-namespace EnterpriseLibrary.Logging.ExtraInformation
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation
 {
     /// <summary>
     /// Gets the security context information from the unmanaged world

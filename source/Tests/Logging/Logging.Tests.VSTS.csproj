@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\..\package.props" />
 
   <PropertyGroup>
@@ -8,8 +8,8 @@
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(Version).$(Revision)</FileVersion>
 
-    <AssemblyName>EnterpriseLibrary.Logging.Tests</AssemblyName>
-    <RootNamespace>EnterpriseLibrary.Logging.Tests</RootNamespace>
+    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging.Tests</AssemblyName>
+    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging.Tests</RootNamespace>
     <AssemblyTitle>Enterprise Library Logging Application Block Tests</AssemblyTitle>
   </PropertyGroup>
 
@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="..\..\Src\Logging\Logging.csproj" />
     <ProjectReference Include="..\Logging.TestSupport\Logging.TestSupport.csproj" />
@@ -48,7 +48,7 @@
       <Link>Logging.licenseheader</Link>
     </None>
 
-    <None Include="EnterpriseLibrary.Logging.Tests.dll.config">
+    <None Include="Microsoft.Practices.EnterpriseLibrary.Logging.Tests.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
 

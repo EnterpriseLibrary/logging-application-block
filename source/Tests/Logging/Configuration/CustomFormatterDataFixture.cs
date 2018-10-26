@@ -1,10 +1,10 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-using EnterpriseLibrary.Logging.Configuration;
-using EnterpriseLibrary.Logging.Formatters.Tests;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Tests.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Configuration
 {
     [TestClass]
     public class GivenCustomerFormatterDataRegistry

@@ -1,11 +1,11 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 
-namespace EnterpriseLibrary.Logging.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Configuration
 {
     /// <summary>
     /// Represents the configuration settings for a log formatter.  This class is abstract.
@@ -23,7 +23,7 @@ namespace EnterpriseLibrary.Logging.Configuration
         /// Initializes a new instance of the <see cref="FormatterData"/> class with a name and a formatter type.
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <param name="formatterType">The <see cref="EnterpriseLibrary.Logging.Formatters.ILogFormatter"/> type.</param>
+        /// <param name="formatterType">The <see cref="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.ILogFormatter"/> type.</param>
         public FormatterData(string name, Type formatterType)
             : base(name, formatterType)
         {

@@ -1,10 +1,10 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
-using EnterpriseLibrary.Logging.ExtraInformation.Helpers;
+using Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Helpers;
 
-namespace EnterpriseLibrary.Logging.ExtraInformation.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Tests
 {
     internal class MockDebugUtilsThrowsNonSecurityException : IDebugUtils
     {

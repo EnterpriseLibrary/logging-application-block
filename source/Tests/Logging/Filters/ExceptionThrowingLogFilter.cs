@@ -1,9 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
-using EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 
-namespace EnterpriseLibrary.Logging.Filters.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Filters.Tests
 {
     class ExceptionThrowingLogFilter : ILogFilter
     {

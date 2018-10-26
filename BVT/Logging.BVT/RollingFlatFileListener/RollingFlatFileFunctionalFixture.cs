@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
-using EnterpriseLibrary.Logging.BVT.TestObjects;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.RollingFlatFileListener
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.RollingFlatFileListener
 {
     [TestClass]
     public class RollingFlatFileFunctionalFixture

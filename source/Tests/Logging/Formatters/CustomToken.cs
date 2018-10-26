@@ -1,6 +1,6 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-namespace EnterpriseLibrary.Logging.Formatters.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
 {
 #pragma warning disable 618
     public class CustomToken : TokenFunction

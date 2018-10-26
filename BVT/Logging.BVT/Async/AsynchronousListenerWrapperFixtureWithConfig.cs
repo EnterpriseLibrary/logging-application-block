@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using EnterpriseLibrary.Data;
-using EnterpriseLibrary.Logging.Database;
-using EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Database;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Async
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Async
 {
     [TestClass]
     public class AsynchronousListenerWrapperFixtureWithConfig : LoggingFixtureBase

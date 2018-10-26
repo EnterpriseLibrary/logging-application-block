@@ -1,13 +1,13 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
-using EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using System.Diagnostics;
-using EnterpriseLibrary.Common.Configuration.Fluent;
-using EnterpriseLibrary.Logging.Properties;
-using CommonResources = EnterpriseLibrary.Common.Properties.Resources;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
+using CommonResources = Microsoft.Practices.EnterpriseLibrary.Common.Properties.Resources;
 
-namespace EnterpriseLibrary.Common.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Common.Configuration
 {
     /// <summary>
     /// <see cref="IConfigurationSourceBuilder"/> extensions to support creation of logging configuration sections.

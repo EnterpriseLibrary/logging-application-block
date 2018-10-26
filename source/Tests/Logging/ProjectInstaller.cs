@@ -1,12 +1,12 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.ComponentModel;
 using System.Configuration.Install;
 using System.Management.Instrumentation;
 
-[assembly: Instrumented(@"root\EnterpriseLibrary")]
+[assembly: Instrumented(@"root\Microsoft.Practices.EnterpriseLibrary")]
 
-namespace EnterpriseLibrary.Logging.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 {
     [RunInstaller(true)]
     public partial class ProjectInstaller : DefaultManagementProjectInstaller 

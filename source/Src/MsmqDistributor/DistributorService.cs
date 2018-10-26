@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Configuration;
@@ -6,13 +6,13 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Security;
 using System.ServiceProcess;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Data;
-using EnterpriseLibrary.Logging.MsmqDistributor.Configuration;
-using EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
-using EnterpriseLibrary.Logging.MsmqDistributor.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Properties;
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor
 {
     /// <summary>
     /// <para>This type supports the Data Access Instrumentation infrastructure and is not intended to be used directly from your code.</para>

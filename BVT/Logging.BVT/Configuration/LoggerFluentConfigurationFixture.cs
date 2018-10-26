@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Common.Configuration.Fluent;
-using EnterpriseLibrary.Logging.BVT.TestObjects;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Fluent;
+using Microsoft.Practices.EnterpriseLibrary.Logging.BVT.TestObjects;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Configuration
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Configuration
 {
     [TestClass]
     public class LoggerFluentConfigurationFixture : LoggingFixtureBase

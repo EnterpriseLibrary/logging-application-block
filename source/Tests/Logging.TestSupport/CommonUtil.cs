@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -12,12 +12,12 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Xml.XPath;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EnterpriseLibrary.Common.TestSupport.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport.Configuration;
 
-namespace EnterpriseLibrary.Logging.TestSupport
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
 {
     /// <summary>
     /// Constants and utility functions to support all programmer tests.

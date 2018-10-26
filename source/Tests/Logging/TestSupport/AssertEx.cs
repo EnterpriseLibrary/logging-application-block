@@ -1,9 +1,9 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace EnterpriseLibrary.Logging.Tests.TestSupport
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TestSupport
 {
     public static class AssertEx
     {

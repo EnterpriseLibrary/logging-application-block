@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
@@ -6,11 +6,11 @@ using System.Globalization;
 using System.Messaging;
 using System.Runtime.Serialization;
 using System.Security.Principal;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
-using EnterpriseLibrary.Logging.MsmqDistributor.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Properties;
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor
 {
     /// <summary>
     /// Receive new log messages from MSMQ and distribute each log entry.

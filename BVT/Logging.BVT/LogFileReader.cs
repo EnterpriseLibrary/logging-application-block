@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Newtonsoft.Json;
 
-namespace EnterpriseLibrary.Logging.BVT
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT
 {
     public static class LogFileReader
     {

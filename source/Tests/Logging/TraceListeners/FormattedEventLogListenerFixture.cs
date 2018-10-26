@@ -1,14 +1,14 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Security;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.TraceListeners.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
 {
     /// <summary>
     /// Summary description for FormattingListenerFixture

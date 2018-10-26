@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -7,15 +7,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using EnterpriseLibrary.Logging.Filters;
-using EnterpriseLibrary.Logging.Filters.Tests;
-using EnterpriseLibrary.Logging.Tests.Properties;
-using EnterpriseLibrary.Logging.TestSupport;
-using EnterpriseLibrary.Logging.TestSupport.TraceListeners;
-using EnterpriseLibrary.Logging.TraceListeners.Tests;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters.Tests;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.Distributor.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Distributor.Tests
 {
     [TestClass]
     public class LogWriterFixture

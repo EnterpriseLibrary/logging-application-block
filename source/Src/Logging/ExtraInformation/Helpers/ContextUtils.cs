@@ -1,10 +1,10 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.EnterpriseServices;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace EnterpriseLibrary.Logging.ExtraInformation.Helpers
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Helpers
 {
     [SecurityCritical]
     internal class ContextUtils : IContextUtils

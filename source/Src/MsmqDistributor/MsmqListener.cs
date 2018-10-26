@@ -1,16 +1,16 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Timers;
-using EnterpriseLibrary.Common.Configuration;
-using EnterpriseLibrary.Logging.MsmqDistributor.Properties;
-using EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Instrumentation;
 using Timer = System.Timers.Timer;
 
-namespace EnterpriseLibrary.Logging.MsmqDistributor
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor
 {
     /// <summary>
     /// Represents the message queue polling timer.  Uses an <see cref="MsmqLogDistributor"/> 

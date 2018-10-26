@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections;
@@ -10,13 +10,13 @@ using System.Linq;
 using System.Security;
 using System.Security.Principal;
 using System.Threading;
-using EnterpriseLibrary.Common.Utility;
-using EnterpriseLibrary.Logging.Filters;
-using EnterpriseLibrary.Logging.Formatters;
-using EnterpriseLibrary.Logging.Properties;
+using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Properties;
 using System.Runtime.Remoting.Messaging;
 
-namespace EnterpriseLibrary.Logging
+namespace Microsoft.Practices.EnterpriseLibrary.Logging
 {
     /// <summary>
     /// Instance based class to write log messages based on a given configuration.

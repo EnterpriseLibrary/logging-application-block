@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using EnterpriseLibrary.Logging.Filters;
+using System.Linq;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EnterpriseLibrary.Logging.BVT.Filter
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.BVT.Filter
 {
     [TestClass]
     public class FilterFixture : LoggingFixtureBase

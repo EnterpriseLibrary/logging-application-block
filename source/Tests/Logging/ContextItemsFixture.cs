@@ -1,15 +1,15 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Runtime.Remoting.Messaging;
-using EnterpriseLibrary.Logging.TestSupport;
-using EnterpriseLibrary.Logging.TraceListeners.Tests;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EnterpriseLibrary.Logging.TestSupport.TraceListeners;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
 
-namespace EnterpriseLibrary.Logging.Tests
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 {
     [TestClass]
     public class ContextItemsFixture

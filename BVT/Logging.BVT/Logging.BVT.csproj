@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\package.props" />
   
   <PropertyGroup>
@@ -8,9 +8,9 @@
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(Version).$(Revision)</FileVersion>
 
-    <AssemblyName>EnterpriseLibrary.Logging.BVT</AssemblyName>
-    <RootNamespace>EnterpriseLibrary.Logging.BVT</RootNamespace>
-    <AssemblyTitle>EnterpriseLibrary.Logging.BVT</AssemblyTitle>
+    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging.BVT</AssemblyName>
+    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging.BVT</RootNamespace>
+    <AssemblyTitle>Microsoft.Practices.EnterpriseLibrary.Logging.BVT</AssemblyTitle>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,10 +26,10 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)')" />
-    <PackageReference Include="EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)')" />
+    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)')" />
 
     <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)')" />
-    <PackageReference Include="EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)')" />
+    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)')" />
 
     <ProjectReference Include="..\..\source\Src\Logging\Logging.csproj" />
     <ProjectReference Include="..\..\source\Src\DatabaseTraceListener\Logging.Database.csproj" />

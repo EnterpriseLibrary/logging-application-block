@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 
-namespace EnterpriseLibrary.Logging.Formatters
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters
 {
     /// <summary>
     /// Formats a <see cref="LogEntry"/> and any subclass of it to an XML string representation.

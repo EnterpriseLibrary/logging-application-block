@@ -1,12 +1,12 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
+// Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Security;
-using EnterpriseLibrary.Logging.ExtraInformation.Helpers;
+using Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation.Helpers;
 
-namespace EnterpriseLibrary.Logging.ExtraInformation
+namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation
 {
     /// <summary>
     /// A helper facade class that provides easy access to commonly needed COM+ diagnostic information.
