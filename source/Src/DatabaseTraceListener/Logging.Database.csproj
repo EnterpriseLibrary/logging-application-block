@@ -6,14 +6,12 @@
 
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(Version).$(Revision)</FileVersion>
-  </PropertyGroup>
 
-  <PropertyGroup>
-    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging.Database</AssemblyName>
-    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging.Database</RootNamespace>
+    <AssemblyName>$(PreAssemblyName).Logging.Database</AssemblyName>
+    <RootNamespace>$(PreAssemblyName).Logging.Database</RootNamespace>
     <AssemblyTitle>Enterprise Library Logging Application Block Database Provider</AssemblyTitle>
 
-    <PackageId>Microsoft.Practices.EnterpriseLibrary.Logging.Database</PackageId>
+    <PackageId>$(PrePackageName).Logging.Database$(PostPackageName)</PackageId>
     <Title>Logging Application Block Database Provider</Title>
     <Description>This logging provider lets developer use the Data Access Application Block to store log entries.</Description>
     <Summary>This logging provider lets developer use the Data Access Application Block to store log entries.</Summary>
@@ -31,19 +29,19 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="$(PrePackageName).Data$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="..\Logging\Logging.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
 
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Management" />
@@ -91,11 +89,11 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
     
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
     
   </ItemGroup>
 
@@ -111,7 +109,7 @@
     <DocumentationFile>$(SolutionDir)..\bin\Debug\$(AssemblyName).xml</DocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\Microsoft.Practices.EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

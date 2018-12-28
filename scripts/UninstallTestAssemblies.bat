@@ -1,2 +1,2 @@
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\installutil -u /LogToConsole=true "%~dp0\..\source\Tests\Logging\bin\Release\net47\EnterpriseLibrary.Logging.Tests.dll"
-%WINDIR%\Microsoft.NET\Framework\v4.0.30319\installutil -u /LogToConsole=true "%~dp0\..\source\Tests\MsmqDistributor\bin\Release\net47\EnterpriseLibrary.Logging.MsmqDistributor.Tests.dll"
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\installutil -u /LogToConsole=true "%~dp0\..\source\Tests\Logging\bin\Release\net47\Microsoft.Practices.EnterpriseLibrary.Logging.Tests.dll"
+%WINDIR%\Microsoft.NET\Framework\v4.0.30319\installutil -u /LogToConsole=true "%~dp0\..\source\Tests\MsmqDistributor\bin\Release\net47\Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Tests.dll"

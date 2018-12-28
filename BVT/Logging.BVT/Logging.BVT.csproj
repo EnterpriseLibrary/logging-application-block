@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\package.props" />
-  
+
   <PropertyGroup>
     <TargetFrameworks>net47</TargetFrameworks>
     <IsPackable>false</IsPackable>
@@ -8,15 +8,15 @@
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(Version).$(Revision)</FileVersion>
 
-    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging.BVT</AssemblyName>
-    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging.BVT</RootNamespace>
-    <AssemblyTitle>Microsoft.Practices.EnterpriseLibrary.Logging.BVT</AssemblyTitle>
+    <AssemblyName>$(PreAssemblyName).Logging.BVT</AssemblyName>
+    <RootNamespace>$(PreAssemblyName).Logging.BVT</RootNamespace>
+    <AssemblyTitle>$(PreAssemblyName).Logging.BVT</AssemblyTitle>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.3.0-beta2" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.3.0-beta2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -26,21 +26,21 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)')" />
-    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)')" />
+    <PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)')" />
 
     <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)')" />
-    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)')" />
+    <PackageReference Include="$(PrePackageName).Data$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)')" />
 
     <ProjectReference Include="..\..\source\Src\Logging\Logging.csproj" />
     <ProjectReference Include="..\..\source\Src\DatabaseTraceListener\Logging.Database.csproj" />
     <ProjectReference Include="..\..\source\Src\MsmqDistributor\Logging.MsmqDistributor.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
 
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Management" />
     <Reference Include="System.Messaging" />
@@ -87,11 +87,11 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
 
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
 
   </ItemGroup>
 

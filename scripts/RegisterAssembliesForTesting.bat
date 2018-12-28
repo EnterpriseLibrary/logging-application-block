@@ -86,7 +86,7 @@ if not Exist "%installUtilDir%" goto HELPFW
 @REM ------------------------------------------------------------------
 pushd %binDir%
 cd ..\source\Tests\Logging\bin\%buildType%
-if Exist EnterpriseLibrary.Logging.Tests.dll installutil %action% /LogToConsole=%logToConsole% EnterpriseLibrary.Logging.Tests.dll
+if Exist Microsoft.Practices.EnterpriseLibrary.Logging.Tests.dll installutil %action% /LogToConsole=%logToConsole% Microsoft.Practices.EnterpriseLibrary.Logging.Tests.dll
 @if errorlevel 1 goto :error
 popd
 
@@ -97,7 +97,7 @@ popd
 @ECHO.
 pushd %binDir%
 cd ..\Source\Tests\MsmqDistributor\bin\%buildType%
-if Exist EnterpriseLibrary.Logging.MsmqDistributor.Tests.dll installutil %action% /LogToConsole=%logToConsole% EnterpriseLibrary.Logging.MsmqDistributor.Tests.dll
+if Exist Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Tests.dll installutil %action% /LogToConsole=%logToConsole% Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor.Tests.dll
 @if errorlevel 1 goto :error
 popd
 

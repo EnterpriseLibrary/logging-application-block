@@ -6,14 +6,12 @@
 
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(Version).$(Revision)</FileVersion>
-  </PropertyGroup>
 
-  <PropertyGroup>
-    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging</AssemblyName>
-    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging</RootNamespace>
+    <AssemblyName>$(PreAssemblyName).Logging</AssemblyName>
+    <RootNamespace>$(PreAssemblyName).Logging</RootNamespace>
     <AssemblyTitle>Enterprise Library Logging Application Block</AssemblyTitle>
 
-    <PackageId>Microsoft.Practices.EnterpriseLibrary.Logging</PackageId>
+    <PackageId>$(PrePackageName).Logging$(PostPackageName)</PackageId>
     <Title>Logging Application Block</Title>
     <Description>The Logging Application Block simplifies logging to various destinations (file, database, event log, MSMQ etc.) and tracing.</Description>
     <Summary>The Logging Application Block simplifies logging to various destinations (file, database, event log, MSMQ etc.) and tracing.</Summary>
@@ -30,18 +28,18 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.*" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="$(SystemConfigurationConfigurationManagerVersion)" />
     <PackageReference Include="System.Security.Permissions" Version="$(SystemSecurityPermissionsVersion)" />
     <PackageReference Include="System.Security.Principal.Windows" Version="$(SystemSecurityPrincipalWindowsVersion)" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.EnterpriseServices" />
@@ -103,7 +101,7 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
     <Compile Remove="**\*Msmq*.cs" />
     <Compile Remove="**\*EventLog*.cs" />
     <Compile Remove="**\*.Desktop.cs" />
@@ -112,7 +110,7 @@
     <Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
     <Compile Remove="System.Runtime.Remoting.Messaging\*.cs" />
   </ItemGroup>
 
@@ -127,10 +125,10 @@
     <WarningLevel>4</WarningLevel>
     <RunFxCop>false</RunFxCop>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>D:\Projects\ConvertedEntlib\logging\source\..\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.xml</DocumentationFile>
+    <DocumentationFile>$(SolutionDir)..\bin\Debug\$(AssemblyName).xml</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\Microsoft.Practices.EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

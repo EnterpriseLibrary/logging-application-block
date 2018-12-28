@@ -6,14 +6,12 @@
 
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(Version).$(Revision)</FileVersion>
-  </PropertyGroup>
 
-  <PropertyGroup>
-    <AssemblyName>Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor</AssemblyName>
-    <RootNamespace>Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor</RootNamespace>
+    <AssemblyName>$(PreAssemblyName).Logging.MsmqDistributor</AssemblyName>
+    <RootNamespace>$(PreAssemblyName).Logging.MsmqDistributor</RootNamespace>
     <AssemblyTitle>Enterprise Library Logging Application Block MSMQ Distributor</AssemblyTitle>
 
-    <PackageId>Microsoft.Practices.EnterpriseLibrary.Logging.MsmqDistributor</PackageId>
+    <PackageId>$(PrePackageName).Logging.MsmqDistributor$(PostPackageName)</PackageId>
     <Title>Logging Application Block MSMQ Distributor</Title>
     <Description>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Description>
     <Summary>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Summary>
@@ -31,19 +29,19 @@
 
   <ItemGroup>
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Common" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="Microsoft.Practices.EnterpriseLibrary.Data" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
+    <PackageReference Include="$(PrePackageName).Data$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <ProjectReference Include="..\Logging\Logging.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
 
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Management" />
@@ -111,7 +109,7 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'netcoreapp2.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
     <Compile Remove="**\*Msmq*.cs" />
     <Compile Remove="**\*EventLog*.cs" />
     <Compile Remove="**\*.Desktop.cs" />
@@ -120,7 +118,7 @@
     <Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0' AND '$(TargetFramework)' != 'netcoreapp2.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
     <Compile Remove="System.Runtime.Remoting.Messaging\*.cs" />
   </ItemGroup>
 
@@ -136,7 +134,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DocumentationFile>$(SolutionDir)..\bin\Debug\$(AssemblyName).xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\Microsoft.Practices.EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -151,6 +149,6 @@
     <DocumentationFile>$(SolutionDir)..\bin\Release\(AssemblyName).xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\Microsoft.Practices.EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 </Project>
