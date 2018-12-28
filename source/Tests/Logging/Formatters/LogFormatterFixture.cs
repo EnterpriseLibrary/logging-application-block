@@ -153,6 +153,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("Machine name: " + Environment.MachineName, actual);
         }
 
+        [Ignore]
         [TestMethod]
         public void LackOfEnvironmentPermissionResultsOnErrorMessageForMachineName()
         {
@@ -197,6 +198,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("App domain: " + AppDomain.CurrentDomain.FriendlyName, actual);
         }
 
+        [Ignore]
         [TestMethod]
         public void FormatsLocalAppDomainTokenWhenInDifferentAppDomain()
         {
@@ -243,6 +245,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("Process id: " + entry.ProcessId, actual);
         }
 
+        [Ignore]
         [TestMethod]
 #if COVERAGE_BUILD
         // Because we disable the unmanaged code permission for this test, this test won't work with
@@ -296,6 +299,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("Process name: " + LogEntry.GetProcessName(), actual);
         }
 
+        [Ignore]
         [TestMethod]
 #if COVERAGE_BUILD
         // Because we disable the unmanaged code permission for this test, this test won't work with
