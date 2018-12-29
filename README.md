@@ -1,5 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/3g085032b100g9ry/branch/master?svg=true)](https://ci.appveyor.com/project/EnterpriseLibrary/logging-application-block/branch/master)
 [![NuGet Pre Release](https://img.shields.io/nuget/vpre/EnterpriseLibrary.Logging.NetCore.svg)](https://www.nuget.org/packages/EnterpriseLibrary.Logging.NetCore)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/EnterpriseLibrary.Logging.NetCore.svg)](https://www.nuget.org/packages/EnterpriseLibrary.Logging.NetCore)
 [![License](https://img.shields.io/badge/license-apache%202.0-60C060.svg)](https://github.com/EnterpriseLibrary/logging-application-block/blob/master/LICENSE)
 
 
