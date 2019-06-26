@@ -670,7 +670,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
 
             try
             {
-                impersonate = true;    // to be undone by caller
+                //impersonate = true;    // to be undone by caller
             }
             catch (SecurityException)
             {

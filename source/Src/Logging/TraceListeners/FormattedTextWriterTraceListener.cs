@@ -89,6 +89,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         public FormattedTextWriterTraceListener(string fileName)
             : base(RootFileNameAndEnsureTargetFolderExists(fileName))
         {
+#if NETSTANDARD2_0 || NETCOREAPP2_0
+            Writer = new StreamWriter(RootFileNameAndEnsureTargetFolderExists(fileName), true);
+#endif
         }
 
         /// <summary>
@@ -157,7 +160,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         /// <param name="name">The name.</param>
         public FormattedTextWriterTraceListener(string fileName, string name)
             : base(RootFileNameAndEnsureTargetFolderExists(fileName), name)
-        { }
+        {
+#if NETSTANDARD2_0 || NETCOREAPP2_0
+            Writer = new StreamWriter(RootFileNameAndEnsureTargetFolderExists(fileName), true);
+#endif
+        }
 
         /// <summary>
         /// Intercepts the tracing request to format the object to trace.

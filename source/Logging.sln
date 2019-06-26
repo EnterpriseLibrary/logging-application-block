@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.MsmqDistributor.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.TestSupport", "Tests\Logging.TestSupport\Logging.TestSupport.csproj", "{BA6BBE25-09D1-47F8-9BAB-F0FF66AD0D70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.AspNetCore", "Src\Logging.AspNetCore\Logging.AspNetCore.csproj", "{9135958F-6BD5-4566-87DD-489B71679061}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging.AspNetCore", "Src\Logging.AspNetCore\Logging.AspNetCore.csproj", "{9135958F-6BD5-4566-87DD-489B71679061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
