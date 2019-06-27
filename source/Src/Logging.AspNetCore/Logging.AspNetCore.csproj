@@ -12,9 +12,9 @@
     <AssemblyTitle>Enterprise Library Logging Application Block</AssemblyTitle>
 
     <PackageId>$(PrePackageName).Logging.AspNetCore$(PostPackageName)</PackageId>
-    <Title>Logging Application Block</Title>
-    <Description>This extension package simplifies configuration logging for ASP.NET Core.</Description>
-    <Summary>This extension package simplifies configuration logging for ASP.NET Core.</Summary>
+    <Title>Logging Application Block for ASP.NET Core 2</Title>
+    <Description>This extension package simplifies configuration logging for ASP.NET Core 2.</Description>
+    <Summary>This extension package simplifies configuration logging for ASP.NET Core 2.</Summary>
     <PackageTags>entlib entlib6 Enterprise Library logging lab tracing LOB futures OSS</PackageTags>
 
     <SignAssembly>true</SignAssembly>
