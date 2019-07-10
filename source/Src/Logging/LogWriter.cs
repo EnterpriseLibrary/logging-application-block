@@ -635,67 +635,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
 #else
         private void ProcessLog(LogEntry log, TraceEventCache traceEventCache)
         {
-            // revert any outstanding impersonation
-            RevertExistingImpersonation(() => ProcessLogInternal(log, traceEventCache));
-        }
-
-        /// <devdoc>
-        /// Checks to determine whether impersonation is in place, and if so, reverts it and returns
-        /// the impersonation context that must be used to undo the revert.
-        /// </devdoc>
-        private void RevertExistingImpersonation(Action action)
-        {
-            bool impersonate = false;
-
-            // noop if reverting impersonation is disabled
-            if (!structureHolder.RevertImpersonation)
-            {
-                impersonate = false;
-            }
-
-            try
-            {
-                using (WindowsIdentity impersonatedIdentity = WindowsIdentity.GetCurrent(true))
-                {
-                    if (impersonatedIdentity == null)
-                    {
-                        impersonate = false;
-                    }
-                }
-            }
-            catch (SecurityException)
-            {
-                impersonate = false;
-            }
-
-            try
-            {
-                impersonate = true;    // to be undone by caller
-            }
-            catch (SecurityException)
-            {
-                // this shouldn't happen, as GetCurrent() and Impersonate() demand the same CAS permissions.
-                impersonate = false;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                impersonate = false;
-            }
-
-            if (impersonate)
-            {
-                using (WindowsIdentity impersonatedIdentity = WindowsIdentity.GetCurrent(true))
-                {
-                    WindowsIdentity.RunImpersonated(impersonatedIdentity.AccessToken, () =>
-                    {
-                        action();
-                    });
-                }
-            }
-            else
-            {
-                action();
-            }
+            // .NET Standard doesn't support impersonation
+            // In the rare case that a .NET Core caller calls (on Windows)
+            // with an impersonated context, it will be the callers responsibility
+            // to revert, if needed, since LAB can't do that in a cross-platform-safe way.
+            ProcessLogInternal(log, traceEventCache);
         }
 #endif
 

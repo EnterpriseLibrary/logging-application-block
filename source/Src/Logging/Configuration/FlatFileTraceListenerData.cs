@@ -174,20 +174,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Configuration
         {
             var formatter = this.BuildFormatterSafe(settings, this.Formatter);
 
-            //This is due to an error inside .net core which does not create the file stream using this constructor
-#if NET45 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472
             return new FlatFileTraceListener(
                         this.FileName,
                         this.Header,
                         this.Footer,
                         formatter);
-#else 
-            FileStream stream = File.Create(this.FileName);
-            return new FlatFileTraceListener(
-                    stream,
-                    this.Name,
-                    formatter);
-#endif
         }
     }
 }
