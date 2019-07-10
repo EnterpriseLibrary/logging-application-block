@@ -2,11 +2,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation;
 using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
@@ -35,7 +35,13 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestInitialize]
         public void Initialize()
         {
-            Logger.SetLogWriter(new LogWriterFactory().Create(), false);
+            var logWriter =
+#if NETCOREAPP
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+                new LogWriterFactory().Create();
+#endif
+            Logger.SetLogWriter(logWriter, false);
         }
 
         [TestCleanup]
@@ -95,7 +101,17 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 
         static void SetTracingFlag(bool tracingEnabled)
         {
-            var config = new FileConfigurationSource(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, false);
+#if NETCOREAPP
+            var configMap = new ExeConfigurationFileMap
+            {
+                ExeConfigFilename = "Microsoft.Practices.EnterpriseLibrary.Logging.Tests.NetCore.dll.config"
+            };
+            var conf = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
+#else
+            var conf = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+#endif
+            var configFilePath = conf.FilePath;
+            var config = new FileConfigurationSource(configFilePath, false);
             var loggingSettings = ((LoggingSettings)config.GetSection(LoggingSettings.SectionName));
             loggingSettings.TracingEnabled = tracingEnabled;
 
@@ -459,12 +475,14 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             Assert.IsTrue(logEntry.Categories.Contains((string)stringLogicalOperation));
         }
 
+#if NET47
         int GetCounterValue(string counterName,
                             string operation)
         {
-            string instanceName = new AppDomainNameFormatter().CreateName(operation);
+            string instanceName = new Common.Instrumentation.AppDomainNameFormatter().CreateName(operation);
             return (int)CommonUtil.GetPerformanceCounterValue(performanceCounterCategory, instanceName, counterName);
         }
+#endif
 
         void DoOtherThreadWork()
         {

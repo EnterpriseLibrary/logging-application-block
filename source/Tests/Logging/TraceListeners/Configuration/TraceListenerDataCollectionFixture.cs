@@ -17,8 +17,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
         public void CanDeserializeSerializedCollection()
         {
             LoggingSettings rwLoggingSettings = new LoggingSettings();
+#if !NETCOREAPP // LAB does not yet support event log listeners on .NET Core
             rwLoggingSettings.TraceListeners.Add(new FormattedEventLogTraceListenerData("listener1", CommonUtil.EventLogSourceName, "formatter"));
             rwLoggingSettings.TraceListeners.Add(new SystemDiagnosticsTraceListenerData("listener2", typeof(FormattedEventLogTraceListener), CommonUtil.EventLogSourceName));
+#endif
             rwLoggingSettings.TraceListeners.Add(new SystemDiagnosticsTraceListenerData("listener3", typeof(XmlWriterTraceListener), "log.txt"));
 
             ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
@@ -33,8 +35,13 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             System.Configuration.Configuration roConfiguration = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
             LoggingSettings roLoggingSettings = roConfiguration.GetSection(LoggingSettings.SectionName) as LoggingSettings;
 
+#if !NETCOREAPP // LAB does not yet support event log listeners on .NET Core
             Assert.AreEqual(3, roLoggingSettings.TraceListeners.Count);
+#else
+            Assert.AreEqual(1, roLoggingSettings.TraceListeners.Count);
+#endif
 
+#if !NETCOREAPP // LAB does not yet support event log listeners on .NET Core
             Assert.IsNotNull(roLoggingSettings.TraceListeners.Get("listener1"));
             Assert.AreEqual(roLoggingSettings.TraceListeners.Get("listener1").GetType(), typeof(FormattedEventLogTraceListenerData));
             Assert.AreSame(roLoggingSettings.TraceListeners.Get("listener1").Type, typeof(FormattedEventLogTraceListener));
@@ -42,6 +49,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.IsNotNull(roLoggingSettings.TraceListeners.Get("listener2"));
             Assert.AreEqual(roLoggingSettings.TraceListeners.Get("listener2").GetType(), typeof(SystemDiagnosticsTraceListenerData));
             Assert.AreSame(roLoggingSettings.TraceListeners.Get("listener2").Type, typeof(FormattedEventLogTraceListener));
+#endif
 
             Assert.IsNotNull(roLoggingSettings.TraceListeners.Get("listener3"));
             Assert.AreEqual(roLoggingSettings.TraceListeners.Get("listener3").GetType(), typeof(SystemDiagnosticsTraceListenerData));

@@ -312,12 +312,4 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
             return MockMsmqInterface.Instance;
         }
     }
-
-    public class TestCustomObject
-    {
-        public override string ToString()
-        {
-            return "TestCustomObject";
-        }
-    }
 }

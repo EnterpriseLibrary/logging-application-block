@@ -10,7 +10,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using System.Diagnostics;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
-using System.Messaging;
 using System.Collections.Specialized;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Configuration

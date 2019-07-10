@@ -153,6 +153,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("Machine name: " + Environment.MachineName, actual);
         }
 
+#if !NETCOREAPP // .NET Core does not support partial trust scenarios
         [Ignore]
         [TestMethod]
         public void LackOfEnvironmentPermissionResultsOnErrorMessageForMachineName()
@@ -175,6 +176,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
                 AppDomain.Unload(sandbox);
             }
         }
+#endif
 
         [TestMethod]
         public void FormatsAppDomainToken()
@@ -198,6 +200,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("App domain: " + AppDomain.CurrentDomain.FriendlyName, actual);
         }
 
+#if !NETCOREAPP // .NET Core does not support partial trust scenarios
         [Ignore]
         [TestMethod]
         public void FormatsLocalAppDomainTokenWhenInDifferentAppDomain()
@@ -222,6 +225,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
                 AppDomain.Unload(sandbox);
             }
         }
+#endif
 
         [TestMethod]
         public void FormatsProcessIdToken()
@@ -245,6 +249,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("Process id: " + entry.ProcessId, actual);
         }
 
+#if !NETCOREAPP // .NET Core does not support partial trust scenarios
         [Ignore]
         [TestMethod]
 #if COVERAGE_BUILD
@@ -275,6 +280,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
                 AppDomain.Unload(sandbox);
             }
         }
+#endif
 
         [TestMethod]
         public void FormatsProcessNameToken()
@@ -299,6 +305,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             Assert.AreEqual("Process name: " + LogEntry.GetProcessName(), actual);
         }
 
+#if !NETCOREAPP // .NET Core does not support partial trust scenarios
         [Ignore]
         [TestMethod]
 #if COVERAGE_BUILD
@@ -332,6 +339,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
                 AppDomain.Unload(sandbox);
             }
         }
+#endif
 
         [TestMethod]
         public void FormatsThreadNameToken()
@@ -1089,6 +1097,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
             }
         }
 
+#if !NETCOREAPP // .NET Core does not support partial trust scenarios
         private static AppDomain GetSandboxedAppDomain(params IPermission[] permissionsToUpdate)
         {
             var evidence = new Evidence();
@@ -1111,5 +1120,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.Tests
                     set);
             return sandbox;
         }
+#endif
     }
 }

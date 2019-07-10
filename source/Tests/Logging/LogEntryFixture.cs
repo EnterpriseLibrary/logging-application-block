@@ -22,7 +22,14 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestInitialize]
         public void SetUp()
         {
-            Logger.SetLogWriter(new LogWriterFactory().Create(), false);
+            var logWriter =
+#if NETCOREAPP
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+                new LogWriterFactory().Create();
+#endif
+
+            Logger.SetLogWriter(logWriter, false);
             MockTraceListener.Reset();
             log = new LogEntry();
         }
@@ -352,6 +359,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             return buffer.ToString();
         }
 
+#if !NETCOREAPP // AppDomains are not supported on .NET Core
         [TestMethod]
         public void ToStringUsesDefaultFormatterWithTokenReplacements()
         {
@@ -373,6 +381,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
                 AppDomain.Unload(domain);
             }
         }
+#endif
     }
 
     public class ToStringUsesDefaultFormatterWithTokenReplacementsHelper : MarshalByRefObject

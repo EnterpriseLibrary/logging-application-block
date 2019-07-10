@@ -624,13 +624,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners
         [TestMethod]
         public void RollingFlatFileTraceListenerReplacedInexistingEnviromentVariables()
         {
-            string fileName = @"%FOO%\%MY_VARIABLE%\foo.log";
+            string fileName = @"tmp\%FOO%\%MY_VARIABLE%\foo.log";
 
             RollingFlatFileTraceListener listener = new RollingFlatFileTraceListener(fileName, "header", "footer", null, 1, "", RollFileExistsBehavior.Increment, RollInterval.Day);
             listener.TraceData(new TraceEventCache(), "source", TraceEventType.Error, 1, "This is a test");
             listener.Dispose();
 
-            string fileNameFromListener = string.Empty;
             string expandedFileName = EnvironmentHelper.ReplaceEnvironmentVariables(fileName);
             string expectedFileName = Path.GetFileName(expandedFileName);
 
@@ -639,7 +638,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners
             Assert.IsTrue(result);
 
             File.Delete(expandedFileName);
-            Assert.AreEqual(expectedFileName, expandedFileName);
         }
 
         class MockDateTimeProvider : RollingFlatFileTraceListener.DateTimeProvider

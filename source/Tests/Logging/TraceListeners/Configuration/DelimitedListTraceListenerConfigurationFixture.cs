@@ -42,6 +42,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.AreEqual(typeof(DelimitedListTraceListener), listener.GetType());
         }
 
+        // Fails on .NET Core due to https://github.com/dotnet/corefx/issues/39363
         [TestMethod]
         public void CanCreateInstanceFromGivenConfigurationWithAttributes()
         {
@@ -61,6 +62,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.AreEqual("||", innerListener.Delimiter);
         }
 
+        // Fails on .NET Core due to https://github.com/dotnet/corefx/issues/39363
         [TestMethod]
         public void CanCreateInstanceFromConfigurationFile()
         {
