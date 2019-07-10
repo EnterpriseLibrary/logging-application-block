@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
@@ -12,6 +14,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
     /// A <see cref="System.Diagnostics.TraceListener"/> that sends data as Application Insights telemetry, 
     /// formatting the output with an <see cref="ILogFormatter"/>.
     /// </summary>
+    [ConfigurationElementType(typeof(ApplicationInsightsTraceListenerData))]
     public class ApplicationInsightsTraceListener : FormattedTraceListenerBase
     {
         private TelemetryClient telemetryClient;
