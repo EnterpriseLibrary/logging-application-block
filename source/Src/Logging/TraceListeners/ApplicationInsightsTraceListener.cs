@@ -26,7 +26,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         /// <param name="instrumentationKey">The instrumentation key to use for sending Application Insights data</param>
         public ApplicationInsightsTraceListener(string instrumentationKey)
         {
-            this.telemetryClient = new TelemetryClient(new TelemetryConfiguration(instrumentationKey));
+            // Set the InstrumentationKey property on TelemetryClient instead of passing in a TelemetryClientConfiguration
+            // to enable retrieving the key later, if needed (as with the ApplicationInsightsTraceListener.InstrumentationKey property)
+            this.telemetryClient = new TelemetryClient()
+            {
+                InstrumentationKey = instrumentationKey
+            };
         }
 
         /// <summary>
