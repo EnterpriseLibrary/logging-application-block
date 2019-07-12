@@ -76,13 +76,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
                     var telemetry = GetTelemetry(logEntry);
                     telemetryClient.TrackTrace(telemetry);
                 }
-                else if (data is string dataString)
-                {
-                    Write(dataString);
-                }
                 else
                 {
-                    base.TraceData(eventCache, source, eventType, id, data);
+                    var telemetry = new TraceTelemetry(data.ToString(), GetSeverityLevel(eventType));
+                    telemetryClient.TrackTrace(telemetry);
                 }
             }
         }
