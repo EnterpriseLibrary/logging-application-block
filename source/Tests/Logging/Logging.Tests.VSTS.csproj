@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <Import Project="..\..\..\package.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net47</TargetFrameworks>
+    <TargetFrameworks>net47;netcoreapp3.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
 
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
@@ -43,6 +43,17 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
   </ItemGroup>
 
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
+    <Compile Remove="**\*Msmq*.cs" />
+    <Compile Remove="**\*EventLog*.cs" />
+    <Compile Remove="**\*Desktop*.cs" />
+    <Compile Remove="**\*.2008.cs" />
+    <Compile Remove="**\*XmlTraceListener*.cs" />
+    <Compile Remove="**\*TransparencyFixture.cs" />
+    <Compile Remove="**\XmlFileListenerInConfigurationSourceBuilderFixture.cs" />
+    <Compile Remove="**\ProjectInstaller*.cs" />
+  </ItemGroup>
+  
   <ItemGroup>
     <None Include="..\..\Logging.licenseheader">
       <Link>Logging.licenseheader</Link>
@@ -76,7 +87,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
 
-    <None Include="$(PreAssemblyName).Logging.Tests.dll.config">
+    <None Include="$(PreAssemblyName).Logging.Tests.*.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     

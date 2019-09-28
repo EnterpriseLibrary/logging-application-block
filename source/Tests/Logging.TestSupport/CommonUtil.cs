@@ -6,7 +6,6 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Messaging;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
@@ -22,7 +21,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
     /// <summary>
     /// Constants and utility functions to support all programmer tests.
     /// </summary>
-    public class CommonUtil
+    public partial class CommonUtil
     {
         // Sink constants
         public const string CustomCategory = "defaultCategory";
@@ -92,25 +91,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
             return FillLogEntry(new LogEntry());
         }
 
-        public static void CreatePrivateTestQ()
-        {
-            string path = MessageQueuePath;
-            if (MessageQueue.Exists(path))
-            {
-                DeletePrivateTestQ();
-            }
-            MessageQueue.Create(path, false);
-        }
-
-        public static void CreateTransactionalPrivateTestQ()
-        {
-            string path = MessageQueuePath;
-            if (!MessageQueue.Exists(path))
-            {
-                MessageQueue.Create(path, true);
-            }
-        }
-
         public static XmlLogEntry CreateXmlLogEntry()
         {
             return CreateXmlLogEntry(Xml, Categories);
@@ -124,27 +104,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
             entry.Categories = new List<string>(categories);
             entry.Xml = new XPathDocument(new StringReader(xml)).CreateNavigator();
             return entry;
-        }
-
-        public static void DeletePrivateTestQ()
-        {
-            string path = MessageQueuePath;
-            if (MessageQueue.Exists(path))
-            {
-                MessageQueue.Delete(path);
-            }
-        }
-
-        public static void ValidateMsmqIsRunning()
-        {
-            try
-            {
-                MessageQueue.Exists(MessageQueuePath);
-            }
-            catch (InvalidOperationException ex)
-            {
-                Assert.Inconclusive(ex.Message);
-            }
         }
 
         ///// <summary>
@@ -165,18 +124,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
         //    return msg;
         //}
 
-        public static int EventLogEntryCount()
-        {
-            using (EventLog log = new EventLog(EventLogName))
-            {
-                return log.Entries.Count - eventLogEntryCounter;
-            }
-        }
-
-        public static int EventLogEntryCountCustom()
-        {
-            return GetCustomEventLog().Entries.Count - eventLogEntryCounterCustom;
-        }
 
         public static string ExecuteProcess(string command,
                                             string cmdarg)
@@ -214,6 +161,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
             return NativeMethods.GetCurrentThreadId().ToString();
         }
 
+#if !NETCOREAPP // LAB does not yet support writing to event log on .NET Core 
         public static EventLog GetCustomEventLog()
         {
             if (!EventLog.Exists(EventLogNameCustom))
@@ -225,6 +173,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
             }
             return new EventLog(EventLogNameCustom);
         }
+#endif
 
         public static LogEntry GetDefaultLogEntry()
         {
@@ -269,20 +218,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
             return intrinsicInfo;
         }
 
-        public static string GetLastEventLogEntry()
-        {
-            using (EventLog log = new EventLog(EventLogName))
-            {
-                return log.Entries[log.Entries.Count - 1].Message;
-            }
-        }
-
-        public static string GetLastEventLogEntryCustom()
-        {
-            EventLog log = GetCustomEventLog();
-            return log.Entries[log.Entries.Count - 1].Message;
-        }
-
         static string GetMessageWithDictionaryXml()
         {
             try
@@ -294,39 +229,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
             catch { }
 
             return "";
-        }
-
-        public static int GetNumberOfMessagesOnQueue()
-        {
-            using (MessageQueue queue = new MessageQueue(MessageQueuePath))
-            {
-                Message[] messages = queue.GetAllMessages();
-                return messages.Length;
-            }
-        }
-
-        public static CounterSample GetPerformanceCounterSample(string categoryName,
-                                                                string instanceName,
-                                                                string counterName)
-        {
-            using (PerformanceCounter counter = new PerformanceCounter())
-            {
-                counter.CategoryName = categoryName;
-                counter.CounterName = counterName;
-                counter.InstanceName = instanceName;
-                return counter.NextSample();
-            }
-        }
-
-        public static long GetPerformanceCounterValue(string categoryName,
-                                                      string instanceName,
-                                                      string counterName)
-        {
-            if (PerformanceCounterCategory.InstanceExists(instanceName, categoryName))
-            {
-                return GetPerformanceCounterSample(categoryName, instanceName, counterName).RawValue;
-            }
-            return 0;
         }
 
         public static string GetProcessName()
@@ -351,38 +253,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
         {
             int hours = TimeZone.CurrentTimeZone.GetUtcOffset(new DateTime(1999, 1, 1)).Hours;
             return hours.ToString("00") + ":00";
-        }
-
-        public static bool LogEntryExists(string message)
-        {
-            // confirm listener started begin message written
-            using (EventLog log = new EventLog(EventLogName))
-            {
-                string expected = message;
-                string entry = log.Entries[log.Entries.Count - 1].Message;
-                return (entry.IndexOf(expected) > -1);
-            }
-        }
-
-        public static string ReadEventLogEntryBody()
-        {
-            using (EventLog log = new EventLog(EventLogName))
-            {
-                return log.Entries[log.Entries.Count - 1].Message;
-            }
-        }
-
-        public static void ResetEventLogCounter()
-        {
-            using (EventLog log = new EventLog(EventLogName))
-            {
-                eventLogEntryCounter = log.Entries.Count;
-            }
-        }
-
-        public static void ResetEventLogCounterCustom()
-        {
-            eventLogEntryCounterCustom = GetCustomEventLog().Entries.Count;
         }
 
         public static IConfigurationSource SaveSectionsAndGetConfigurationSource(LoggingSettings loggingSettings)

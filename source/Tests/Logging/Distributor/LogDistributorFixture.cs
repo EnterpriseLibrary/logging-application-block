@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Filters.Tests;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Tests;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Properties;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
@@ -30,14 +31,19 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Distributor.Tests
         {
             AppDomain.CurrentDomain.SetData("APPBASE", Environment.CurrentDirectory);
 
-            logWriter = new LogWriterFactory().Create();
+            logWriter =
+#if NETCOREAPP
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+                new LogWriterFactory().Create();
+#endif
             MockTraceListener.Reset();
             ErrorsMockTraceListener.Reset();
 
             emptyTraceSource = new LogSource("none", Enumerable.Empty<TraceListener>(), SourceLevels.All);
             Assert.IsFalse(emptyTraceSource.Listeners.Any());
         }
-
+        
         [TestCleanup]
         public void TearDown()
         {
@@ -91,6 +97,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Distributor.Tests
             Assert.AreEqual(CommonUtil.MsgBody, ((LogEntry)MockTraceListener.LastEntry).Message, "Body");
         }
 
+#if NET47 // LAB does not yet support writing to the event log on .NET Core
         [TestMethod]
         public void SendManyMessagesToManyFlatFileAndEventLog()
         {
@@ -175,13 +182,19 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Distributor.Tests
             Assert.AreEqual(numberOfWrites, headersFound);
             Assert.AreEqual(numberOfWrites, log.Entries.Count - numberOfEventLogs);
         }
+#endif
 
         [TestMethod]
         public void LogWriterCanGetConfiguredCategories()
         {
             LogSource source = null;
 
-            LogWriter logWriter = new LogWriterFactory().Create();
+            LogWriter logWriter =
+#if NETCOREAPP
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+                new LogWriterFactory().Create();
+#endif
 
             try
             {

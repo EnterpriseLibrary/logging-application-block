@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using System.Xml.XPath;
+using Microsoft.Practices.EnterpriseLibrary.Logging.Tests;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,8 +21,15 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         [TestInitialize]
         public void SetUp()
         {
+            var logWriter =
+#if NETCOREAPP
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+                new LogWriterFactory().Create();
+#endif
+
             proxy = new EntLibLoggingProxyTraceListener();
-            Logger.SetLogWriter(new LogWriterFactory().Create(), false);
+            Logger.SetLogWriter(logWriter, false);
             MockTraceListener.Reset();
         }
 
@@ -84,6 +92,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
             CommonUtil.AssertXmlLogEntries(lastEntry, entry);
         }
 
+#if !NETCOREAPP // System.Diagnostics configuration does not work with .NET Core
         [TestMethod]
         public void CanGetInstanceFromConfigurationObject()
         {
@@ -122,6 +131,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
             Assert.AreEqual("urn:test", listener.NamespaceManager.GetNamespacesInScope(XmlNamespaceScope.Local)["pre"]);
             Assert.AreEqual("urn:test2", listener.NamespaceManager.GetNamespacesInScope(XmlNamespaceScope.Local)["pre2"]);
         }
+#endif
 
         [TestMethod]
         public void SplittingEmptyXPathsStringReturnsEmptyList()

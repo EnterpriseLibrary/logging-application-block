@@ -1203,4 +1203,16 @@ Flat File, Rolling Flat File, Email, and Event Log Trace Listeners. Accepted val
   <data name="TraceListenerDataAsynchronousMaxDegreeOfParallelismDisplayName" xml:space="preserve">
     <value>Degree of parallelism (asynchronous)</value>
   </data>
+  <data name="ApplicationInsightsTraceListenerDataFormatterDescription" xml:space="preserve">
+    <value>The name of the Log Message Formatter to use for formatting the log message before sending it to the logging target.</value>
+  </data>
+  <data name="ApplicationInsightsTraceListenerDataFormatterDisplayName" xml:space="preserve">
+    <value>Formatter Name</value>
+  </data>
+  <data name="ApplicationInsightsTraceListenerDataInstrumentationKeyDescription" xml:space="preserve">
+    <value>Instrumentation key use to connect to Application Insights</value>
+  </data>
+  <data name="ApplicationInsightsTraceListenerDataInstrumentationKeyDisplayName" xml:space="preserve">
+    <value>Instrumentation Key</value>
+  </data>
 </root>

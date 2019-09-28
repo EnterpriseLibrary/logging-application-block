@@ -17,8 +17,15 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestInitialize]
         public void Setup()
         {
+            var logWriter =
+#if NETCOREAPP
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+                new LogWriterFactory().Create();
+#endif
+
             Logger.Reset();
-            Logger.SetLogWriter(new LogWriterFactory().Create());
+            Logger.SetLogWriter(logWriter);
             Logger.FlushContextItems();
         }
 

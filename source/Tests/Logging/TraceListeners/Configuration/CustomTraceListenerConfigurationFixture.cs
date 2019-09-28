@@ -176,6 +176,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.AreEqual(attributeValue, innerListener.Attribute);
         }
 
+#if !NETCOREAPP // System.Diagnostics configuration does not work with .NET Core
         [TestMethod]
         public void CanUseCustomTraceListenerWithSystemDiagnosticsConfiguration()
         {
@@ -190,6 +191,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.IsNull(((MockCustomTraceListener)listener).Formatter);
             Assert.AreEqual(attributeValue, ((MockCustomTraceListener)listener).Attribute);
         }
+#endif 
 
         [TestMethod]
         public void CanDeserializeSerializedConfiguration()

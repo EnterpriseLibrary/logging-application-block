@@ -29,7 +29,13 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         public void SetUp()
         {
             AppDomain.CurrentDomain.SetData("APPBASE", Environment.CurrentDirectory);
-            Logger.SetLogWriter(new LogWriterFactory().Create(), false);
+            var logWriter =
+#if NETCOREAPP
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+                new LogWriterFactory().Create();
+#endif
+            Logger.SetLogWriter(logWriter, false);
             MockTraceListener.Reset();
         }
 
@@ -238,6 +244,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 
         // -----------------------
 
+#if !NETCOREAPP // LAB does not yet support writing to event log on .NET Core
         [TestMethod]
         public void WriteDictionary()
         {
@@ -269,6 +276,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             Assert.IsTrue(actual.IndexOf("key3") > -1);
             Assert.IsTrue(actual.IndexOf("value3") > -1);
         }
+#endif 
 
         [TestMethod]
         public void WriteDictionaryWithHeaderAndFooter()
@@ -298,7 +306,15 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             MockTraceListener.Reset();
 
             // configuration update
+#if NETCOREAPP
+            var configMap = new ExeConfigurationFileMap
+            {
+                ExeConfigFilename = "Microsoft.Practices.EnterpriseLibrary.Logging.Tests.NetCore.dll.config"
+            };
+            var configuration = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
+#else
             System.Configuration.Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+#endif
             LoggingSettings writableSettings = (LoggingSettings)configuration.GetSection(LoggingSettings.SectionName);
             writableSettings.LogFilters.Remove("enable");
             writableSettings.LogFilters.Add(new LogEnabledFilterData("enable", false));
@@ -354,6 +370,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             Assert.IsFalse(shouldLog);
         }
 
+#if !NETCOREAPP // .NET Core tests use a non-default configuration file
         [TestMethod]
         public void EmptyCategoriesRevertToDefaultCategory()
         {
@@ -375,6 +392,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
                 Assert.IsTrue(MockTraceListener.LastEntry.Categories.Contains(settings.DefaultCategory));
             }
         }
+#endif
 
         [TestMethod]
         public void CanWritetoListenerWithDefaultConstructor()
@@ -387,6 +405,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             Logger.Write(log);
         }
 
+#if !NETCOREAPP // LAB does not yet support writing to event log on .NET Core
         [TestMethod]
         public void EventLogEntryWrittenWhenLoggingConfigurationIsCorrupt()
         {
@@ -420,6 +439,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
                 ConfigurationManager.RefreshSection(LoggingSettings.SectionName);
             }
         }
+#endif
 
         string GetFileContents(string fileName)
         {

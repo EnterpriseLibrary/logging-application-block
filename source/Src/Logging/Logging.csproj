@@ -31,6 +31,7 @@
     <PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
     <PackageReference Include="Newtonsoft.Json" Version="12.0.*" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.10.0" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">

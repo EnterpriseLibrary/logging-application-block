@@ -26,7 +26,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation
         /// </summary>
         public string AuthenticationType
         {
-            get { return Thread.CurrentPrincipal.Identity.AuthenticationType; }
+            // .NET Core has a null CurrentPrincipal if it hasn't been set whereas .NET Framework has an
+            // empty one. Explicitly translate null to empty here so that the two work the same.
+            get { return Thread.CurrentPrincipal?.Identity.AuthenticationType ?? string.Empty; }
         }
 
         /// <summary>
@@ -34,7 +36,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation
         /// </summary>
         public string IdentityName
         {
-            get { return Thread.CurrentPrincipal.Identity.Name; }
+            // .NET Core has a null CurrentPrincipal if it hasn't been set whereas .NET Framework has an
+            // empty one. Explicitly translate null to empty here so that the two work the same.
+            get { return Thread.CurrentPrincipal?.Identity.Name ?? string.Empty; }
         }
 
         /// <summary>
@@ -42,7 +46,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation
         /// </summary>
         public bool IsAuthenticated
         {
-            get { return Thread.CurrentPrincipal.Identity.IsAuthenticated; }
+            // .NET Core has a null CurrentPrincipal if it hasn't been set whereas .NET Framework has an
+            // empty one. Explicitly translate null to false here so that the two work the same.
+            get { return Thread.CurrentPrincipal?.Identity.IsAuthenticated ?? false; }
         }
     }
 }

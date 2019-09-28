@@ -138,7 +138,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         [TestMethod]
         public void FlatFileListenerReplacedInexistingEnviromentVariables()
         {
-            string fileName = @"%FOO%\%MY_VARIABLE%\foo.log";
+            string fileName = @"a\%FOO%\%MY_VARIABLE%\foo.log";
 
             FlatFileTraceListener listener = new FlatFileTraceListener(fileName);
 
@@ -154,8 +154,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
             Assert.IsTrue(result);
 
             File.Delete(expandedFileName);
-
-            Assert.AreEqual(expectedFileName, expandedFileName);
         }
 
         [TestMethod]

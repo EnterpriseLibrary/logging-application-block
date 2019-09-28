@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System;
-using System.Management.Instrumentation;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
 {
@@ -31,13 +30,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport
             set { }
         }
 
-        [IgnoreMember]
         public string PropertyNotReadable
         {
             set { }
         }
 
-        [IgnoreMember]
         public string this[int index]
         {
             get { return null; }
