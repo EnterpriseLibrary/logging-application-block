@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
@@ -155,7 +156,14 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 
             Assert.AreEqual(Environment.MachineName, log.MachineName);
             Assert.AreEqual(AppDomain.CurrentDomain.FriendlyName, log.AppDomainName);
-            Assert.AreEqual(NativeMethods.GetCurrentProcessId().ToString(), log.ProcessId);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Assert.AreEqual(NativeMethods.GetCurrentProcessId().ToString(NumberFormatInfo.InvariantInfo), log.ProcessId);
+            }
+            else
+            {
+                Assert.AreEqual(Thread.CurrentThread.ManagedThreadId.ToString(NumberFormatInfo.InvariantInfo), log.ProcessId);
+            }
             Assert.AreEqual(GetExpectedProcessName(), log.ProcessName);
             Assert.AreEqual(Thread.CurrentThread.Name, log.ManagedThreadName);
             Assert.AreEqual(NativeMethods.GetCurrentThreadId().ToString(), log.Win32ThreadId);
