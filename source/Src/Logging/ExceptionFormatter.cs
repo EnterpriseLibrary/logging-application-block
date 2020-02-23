@@ -4,6 +4,7 @@ using System;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Principal;
 using System.Text;
@@ -181,7 +182,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
             this.additionalInfo.Add("TimeStamp:", "TimeStamp: " + DateTime.UtcNow.ToString(CultureInfo.CurrentCulture));
             this.additionalInfo.Add("FullName:", "FullName: " + Assembly.GetExecutingAssembly().FullName);
             this.additionalInfo.Add("AppDomainName:", "AppDomainName: " + AppDomain.CurrentDomain.FriendlyName);
-            this.additionalInfo.Add("WindowsIdentity:", "WindowsIdentity: " + GetWindowsIdentity());
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                this.additionalInfo.Add("WindowsIdentity:", "WindowsIdentity: " + GetWindowsIdentity());
+            }
         }
 
         private static string GetWindowsIdentity()
