@@ -39,7 +39,7 @@
     <!--In order to debug the EntLib dependencies open 'Logging (With Dependencies).sln' and change 'EntLibDependencyType' value to Project -->
     <EntLibDependencyType>Package</EntLibDependencyType>
     <EntLibCommonVersion>6.3.0</EntLibCommonVersion>
-    <EntLibDataVersion>6.3.0</EntLibDataVersion>
+    <EntLibDataVersion>6.3.2</EntLibDataVersion>
   </PropertyGroup>
 
 </Project>
