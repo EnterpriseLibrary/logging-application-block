@@ -121,7 +121,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>D:\Projects\ConvertedEntlib\logging\source\..\bin\Debug\</OutputPath>
+    <OutputPath>$(SolutionDir)..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WMINET10</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
