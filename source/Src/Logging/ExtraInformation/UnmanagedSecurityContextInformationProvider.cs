@@ -52,7 +52,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.ExtraInformation
         /// </summary>
         public string ProcessAccountName
         {
+// Warning disabled to allow debug builds for net 6/7.
+#pragma warning disable SYSLIB0003
             [SecurityPermission(SecurityAction.Demand, UnmanagedCode = true)]
+#pragma warning restore SYSLIB0003
             get
             {
                 // Get Security Info

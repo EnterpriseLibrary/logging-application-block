@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 using System.Diagnostics;
-using System.Messaging;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using System.Collections.Specialized;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;

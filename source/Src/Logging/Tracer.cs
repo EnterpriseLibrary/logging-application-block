@@ -187,7 +187,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
         {
             if (Tracer.isFullyTrusted)
             {
+// Warning disabled to allow debug builds for net 6/7.
+#pragma warning disable SYSLIB0003
                 new SecurityPermission(SecurityPermissionFlag.UnmanagedCode).Demand();
+#pragma warning restore SYSLIB0003
             }
         }
 
