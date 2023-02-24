@@ -41,6 +41,10 @@
     <PackageReference Include="System.Security.Principal.Windows" Version="$(SystemSecurityPrincipalWindowsVersion)" />
   </ItemGroup>
 
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7'))">
+    <PackageReference Include="System.Diagnostics.EventLog" Version="7.0.0" />
+  </ItemGroup>
+	
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -103,11 +107,17 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup Condition="!$(TargetFramework.StartsWith('net4'))">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
     <Compile Remove="**\*Msmq*.cs" />
     <Compile Remove="**\*EventLog*.cs" />
     <Compile Remove="**\*.Desktop.cs" />
     <Compile Remove="**\*XmlTraceListener*.cs" />
+    <Compile Remove="ExtraInformation\Helpers\*ContextUtils.cs" />
+    <Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
+  </ItemGroup>
+	
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7'))">
+    <Compile Remove="**\*Msmq*.cs" />
     <Compile Remove="ExtraInformation\Helpers\*ContextUtils.cs" />
     <Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
   </ItemGroup>
