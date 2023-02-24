@@ -8,8 +8,6 @@ using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
 {
-// Warning disabled to allow debug builds for net 6/7.
-#pragma warning disable CA1416
     /// <summary>
     /// FormattedEventLogTraceListener is a <see cref="TraceListener"/> that wraps an <see cref="FormattedEventLogTraceListener"/> 
     /// and uses a <see cref="ILogFormatter"/> to transform the data to trace.
@@ -106,5 +104,4 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
             return string.IsNullOrEmpty(machineName) ? DefaultMachineName : machineName;
         }
     }
-#pragma warning restore CA1416
 }
