@@ -192,7 +192,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
         {
             try
             {
+// Warning disabled to allow debug builds for net 6/7.
+#pragma warning disable CA1416
                 return WindowsIdentity.GetCurrent().Name;
+#pragma warning restore CA1416
             }
             catch (SecurityException)
             {

@@ -581,7 +581,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
             return traceSource != null && traceSource.Listeners.Any();
         }
 
-#if !NETSTANDARD2_0 && !NETCOREAPP2_0
+#if !NETSTANDARD2_0 && !NETCOREAPP2_0 && !NET6_0 && !NET7_0
         private void ProcessLog(LogEntry log, TraceEventCache traceEventCache)
         {
             // revert any outstanding impersonation

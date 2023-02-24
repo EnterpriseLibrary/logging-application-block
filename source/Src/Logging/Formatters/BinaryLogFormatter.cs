@@ -8,6 +8,8 @@ using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters
 {
+// Keeping obsolete binary formatter in net 6/7 build for a compatibility with old code using EnterpriseLibrary. If not disabled this warning generates warning as error in net 6/7.
+#pragma warning disable SYSLIB0011
     /// <summary>
     /// Log formatter that will format a <see cref="LogEntry"/> in a way suitable for wire transmission.
     /// </summary>
@@ -55,4 +57,5 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Formatters
             return new BinaryFormatter();
         }
     }
+#pragma warning restore SYSLIB0011
 }

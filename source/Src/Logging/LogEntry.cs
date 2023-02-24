@@ -594,8 +594,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
                     {
                         try
                         {
+// Warning disabled to allow debug builds for net 6/7.
+#pragma warning disable SYSLIB0003
                             SecurityPermission unmanagedCodePermission = new SecurityPermission(SecurityPermissionFlag.UnmanagedCode);
                             unmanagedCodePermission.Demand();
+#pragma warning restore SYSLIB0003
                             internalUnmanagedCodePermissionAvailable = true;
                         }
                         catch (SecurityException)
