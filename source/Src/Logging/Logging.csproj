@@ -2,7 +2,7 @@
   <Import Project="..\..\..\package.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net45;net46;net47;net472;netstandard2.0;net6.0-windows;net7.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net47;net472;netstandard2.0;net6.0-windows;net7.0-windows;net8.0-windows</TargetFrameworks>
 
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
     <FileVersion>$(Version).$(Revision)</FileVersion>
@@ -40,7 +40,7 @@
     <PackageReference Include="System.Security.Principal.Windows" Version="$(SystemSecurityPrincipalWindowsVersion)" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7'))">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7')) OR $(TargetFramework.StartsWith('net8'))">
     <PackageReference Include="System.Diagnostics.EventLog" Version="7.0.0" />
   </ItemGroup>
 	
@@ -115,7 +115,7 @@
     <Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
   </ItemGroup>
 	
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7'))">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net6')) OR $(TargetFramework.StartsWith('net7')) OR $(TargetFramework.StartsWith('net8'))">
     <Compile Remove="**\*Msmq*.cs" />
     <Compile Remove="ExtraInformation\Helpers\*ContextUtils.cs" />
     <Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
