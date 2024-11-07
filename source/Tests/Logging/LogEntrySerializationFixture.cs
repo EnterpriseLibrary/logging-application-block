@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+#if NET8_0
+using System.Text.Json;
+#endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
@@ -18,7 +21,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             var entry = new LogEntry
             {
                 ActivityId = Guid.NewGuid(),
-                Categories = {"A", "B", "C"},
+                Categories = { "A", "B", "C" },
                 Message = "Message"
 
             };
@@ -26,12 +29,15 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             Serialize(entry);
         }
 
+#if !NET8_0
         [TestMethod]
         [ExpectedException(typeof(SerializationException))]
         public void CannotSerializeDerivedList()
         {
             Serialize(new NonSerializableList());
         }
+#endif
+
 
         [TestMethod]
         public void CanSerializeLogEntryThatContainsNonSerializableCategoryCollection()
@@ -75,7 +81,19 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             AssertAreEqual(entry.Categories, deserializedEntry.Categories);
         }
 
+#if NET8_0
         private static byte[] Serialize(object entry)
+        {
+
+            return JsonSerializer.SerializeToUtf8Bytes(entry);
+        }
+        private static T Deserialize<T>(byte[] serializedObject)
+        {
+
+            return JsonSerializer.Deserialize<T>(serializedObject);
+        }
+#else
+private static byte[] Serialize(object entry)
         {
             IFormatter formatter = new BinaryFormatter();
             using(var stream = new MemoryStream())
@@ -94,14 +112,16 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
                 return (T) result;
             }
         }
+#endif
+
 
         private void AssertAreEqual<T>(ICollection<T> expected, ICollection<T> actual)
         {
             Assert.AreEqual(expected.Count, actual.Count, "Collections have different lengths, expected {0}, actual {1}", expected.Count, actual.Count);
-            
+
             IEnumerator<T> expectedEnumerator = expected.GetEnumerator();
             IEnumerator<T> actualEnumerator = actual.GetEnumerator();
-            for(int i = 0; i < expected.Count; ++i)
+            for (int i = 0; i < expected.Count; ++i)
             {
                 expectedEnumerator.MoveNext();
                 actualEnumerator.MoveNext();
@@ -113,7 +133,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 
         internal class NonSerializableList : List<string>
         {
-            
+
         }
     }
 }
