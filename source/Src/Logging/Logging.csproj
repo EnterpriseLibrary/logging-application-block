@@ -30,9 +30,16 @@
     <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
     <PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.10.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' != 'net8.0'">
+		<PackageReference Include="Newtonsoft.Json" Version="12.*" />
+	</ItemGroup>
+	
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<PackageReference Include="Newtonsoft.Json" Version="13.*" />
+	</ItemGroup>
 
   <ItemGroup Condition="!$(TargetFramework.StartsWith('net4'))">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="$(SystemConfigurationConfigurationManagerVersion)" />
