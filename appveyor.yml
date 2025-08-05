@@ -45,7 +45,8 @@ build:
   project: source\Logging.sln
   parallel: true
   verbosity: minimal
-
+  
+ 
 after_build:
   - cmd: scripts\InstallTestAssemblies.bat
   - cmd: scripts\CreateLoggingDatabase.bat
@@ -66,3 +67,6 @@ on_success:
   - git pull
   - git commit -m "Revision update by AppVeyor [ci skip]" -- version.props
   - git push
+
+timeout: 20  # overall build timeout (in minutes)
+ 
