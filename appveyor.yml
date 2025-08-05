@@ -68,5 +68,4 @@ on_success:
   - git commit -m "Revision update by AppVeyor [ci skip]" -- version.props
   - git push
 
-timeout: 20  # overall build timeout (in minutes)
- 
+
