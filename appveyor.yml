@@ -5,6 +5,7 @@ skip_tags: true
 
 services:
   - mssql2017
+  - msmq
 
 install:
   - ps: $env:version_file_path = ".\version.props"
