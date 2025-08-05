@@ -21,6 +21,19 @@ install:
   - ps: $xRevision = Select-Xml -Path $env:version_file_path -XPath "/Project/PropertyGroup/Revision"
   - ps: $xRevision.Node.InnerText = $env:revision
   - ps: $xRevision.Node.OwnerDocument.Save($xRevision.Path)
+  - ps: |
+      Write-Host "Checking MSMQ service..."
+      $service = Get-Service MSMQ -ErrorAction SilentlyContinue
+      if ($service) {
+        Write-Host "MSMQ Service Status: $($service.Status)"
+        if ($service.Status -ne "Running") {
+          Start-Service MSMQ
+          Write-Host "Started MSMQ Service."
+        }
+      } else {
+        Write-Error "MSMQ Service not found on this image."
+        exit 1
+      }
 
 dotnet_csproj:
   patch: false
