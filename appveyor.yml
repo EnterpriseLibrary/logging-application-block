@@ -72,4 +72,4 @@ environment:
   DOTNET_FRAMEWORK: net472
 
 test_script:
-  - dotnet test --framework %DOTNET_FRAMEWORK%
+  - cmd: dotnet test source\Logging.sln --framework %DOTNET_FRAMEWORK% --verbosity normal
