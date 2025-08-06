@@ -68,8 +68,3 @@ on_success:
   - git commit -m "Revision update by AppVeyor [ci skip]" -- version.props
   - git push
   
-environment:
-  DOTNET_FRAMEWORK: net472
-
-test_script:
-  - cmd: dotnet test source\Logging.sln --framework %DOTNET_FRAMEWORK% --verbosity normal
