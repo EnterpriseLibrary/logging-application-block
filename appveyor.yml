@@ -71,3 +71,5 @@ on_success:
 environment:
   DOTNET_FRAMEWORK: net472
 
+test_script:
+  - dotnet test --framework %DOTNET_FRAMEWORK%
