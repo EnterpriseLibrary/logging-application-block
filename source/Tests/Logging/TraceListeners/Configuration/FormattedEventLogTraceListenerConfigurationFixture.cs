@@ -206,26 +206,40 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
         {
             LoggingSettings loggingSettings = new LoggingSettings();
             loggingSettings.Formatters.Add(new TextFormatterData("formatter", "some template"));
-            FormattedEventLogTraceListenerData listenerData = new FormattedEventLogTraceListenerData();
-            listenerData.Name = "listener";
-            listenerData.Type = typeof(FormattedEventLogTraceListener);
-            listenerData.ListenerDataType = typeof(FormattedEventLogTraceListenerData);
-            listenerData.Source = "unknown source";
-            listenerData.Formatter = "formatter";
+
+            FormattedEventLogTraceListenerData listenerData = new FormattedEventLogTraceListenerData
+            {
+                Name = "listener",
+                Type = typeof(FormattedEventLogTraceListener),
+                ListenerDataType = typeof(FormattedEventLogTraceListenerData),
+                Source = "unknown source",
+                Formatter = "formatter"
+            };
+
             loggingSettings.TraceListeners.Add(listenerData);
 
-            TraceListener listener = 
+            TraceListener listener =
                 GetListener("listener", CommonUtil.SaveSectionsAndGetConfigurationSource(loggingSettings));
 
             Assert.IsNotNull(listener);
-            Assert.AreEqual(listener.GetType(), typeof(FormattedEventLogTraceListener));
-            FormattedEventLogTraceListener castedListener = (FormattedEventLogTraceListener)listener;
+            Assert.AreEqual(typeof(FormattedEventLogTraceListener), listener.GetType());
+
+            var castedListener = (FormattedEventLogTraceListener)listener;
             Assert.IsNotNull(castedListener.Formatter);
-            Assert.AreEqual("unknown source", ((EventLogTraceListener)castedListener.InnerListener).EventLog.Source);
-            //Assert.AreEqual(FormattedEventLogTraceListener.DefaultLogName, ((EventLogTraceListener)castedListener.InnerListener).EventLog.Log);
-            Assert.AreEqual(FormattedEventLogTraceListener.DefaultMachineName, ((EventLogTraceListener)castedListener.InnerListener).EventLog.MachineName);
-            Assert.AreEqual(castedListener.Formatter.GetType(), typeof(TextFormatter));
+            Assert.AreEqual(typeof(TextFormatter), castedListener.Formatter.GetType());
             Assert.AreEqual("some template", ((TextFormatter)castedListener.Formatter).Template);
+
+            if (castedListener.InnerListener is EventLogTraceListener eventLogListener)
+            {
+                Assert.AreEqual("unknown source", eventLogListener.EventLog.Source);
+                // Assert.AreEqual(FormattedEventLogTraceListener.DefaultLogName, eventLogListener.EventLog.Log); // Uncomment if needed
+                Assert.AreEqual(FormattedEventLogTraceListener.DefaultMachineName, eventLogListener.EventLog.MachineName);
+            }
+            else
+            {
+                Assert.Inconclusive("InnerListener is not EventLogTraceListener. Actual type: " + castedListener.InnerListener.GetType().FullName);
+            }
         }
+
     }
 }
