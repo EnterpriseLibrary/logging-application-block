@@ -51,8 +51,8 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
                 typeof(LoggerProxy).Assembly.FullName,
                 typeof(LoggerProxy).FullName));
 #else
-        // In .NET Core / .NET 5+, just create the logger directly
-        this.loggerProxy = new LoggerProxy();
+            Assert.Inconclusive("Partial trust AppDomains are not supported in .NET Core or .NET 5+.");
+
 #endif
 
             this.loggerProxy.Setup();
