@@ -167,6 +167,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         }
     }
 
+#if NETFRAMEWORK
     public class given_log_writer_in_partial_trust_app_domain_with_unmanaged_code_permission : BasePartialTrustContext
     {
         protected override void AddPermissions(PermissionSet set)
@@ -308,6 +309,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
             }
         }
     }
+
 
     public class given_log_writer_in_partial_trust_app_domain_with_fully_trusted_logging_and_without_unmanaged_code_permission : BasePartialTrustContext
     {
@@ -561,7 +563,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
             }
         }
     }
-
+#endif
     public class LoggerProxy : MarshalByRefObject
     {
         private MockTraceListener traceListener;
