@@ -667,10 +667,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Asy
             }
 
             [TestMethod]
+            [Timeout(15000)]
             public void then_exceptions_are_logged()
             {
-                this.writesCompleted.Wait();
-                this.exceptionsWritten.Wait();
+                Assert.IsTrue(this.writesCompleted.Wait(10000), "writesCompleted was never signaled.");
+                Assert.IsTrue(this.exceptionsWritten.Wait(10000), "exceptionsWritten was never signaled.");
+
 
                 CollectionAssert.AreEquivalent(new[] { "throw three", "throw five" }, this.exceptions);
             }
