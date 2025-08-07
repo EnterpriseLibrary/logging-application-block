@@ -52,7 +52,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
                         CommonUtil.EventLogNameCustom,
                         formatter);
 
-                LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
+                LogSource source = new LogSource("", new[] { listener }, SourceLevels.All);
                 LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
 
                 source.TraceData(TraceEventType.Error, 1, logEntry);
