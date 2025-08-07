@@ -36,17 +36,22 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         [TestMethod]
         public void ListenerWillUseFormatterIfExists()
         {
-            StringWriter writer = new StringWriter();
+            EventLog log = CommonUtil.GetCustomEventLog();
+            log.Clear(); 
+
             FormattedEventLogTraceListener listener =
-                new FormattedEventLogTraceListener(CommonUtil.EventLogSourceName, CommonUtil.EventLogNameCustom, new TextFormatter("DUMMY{newline}DUMMY"));
+                new FormattedEventLogTraceListener(
+                    CommonUtil.EventLogSourceName,
+                    CommonUtil.EventLogNameCustom,
+                    new TextFormatter("DUMMY{newline}DUMMY"));
 
-            // need to go through the source to get a TraceEventCache
             LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
-
             LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
+
             source.TraceData(TraceEventType.Error, 1, logEntry);
 
             Assert.AreEqual("DUMMY" + Environment.NewLine + "DUMMY", CommonUtil.GetLastEventLogEntryCustom());
+
         }
 
         [TestMethod]
