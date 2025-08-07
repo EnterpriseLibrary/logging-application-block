@@ -36,21 +36,45 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         [TestMethod]
         public void ListenerWillUseFormatterIfExists()
         {
-            EventLog log = CommonUtil.GetCustomEventLog();
-            log.Clear(); 
+            // Setup formatter
+            var formatter = new TextFormatter("DUMMY{newline}DUMMY");
 
-            FormattedEventLogTraceListener listener =
-                new FormattedEventLogTraceListener(
-                    CommonUtil.EventLogSourceName,
-                    CommonUtil.EventLogNameCustom,
-                    new TextFormatter("DUMMY{newline}DUMMY"));
+            // Capture Console output
+            var originalOut = Console.Out;
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);  // Redirect console
 
-            LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
-            LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
+            try
+            {
+                FormattedEventLogTraceListener listener =
+                    new FormattedEventLogTraceListener(
+                        CommonUtil.EventLogSourceName,
+                        CommonUtil.EventLogNameCustom,
+                        formatter);
 
-            source.TraceData(TraceEventType.Error, 1, logEntry);
+                LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
+                LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
 
-            Assert.AreEqual("DUMMY" + Environment.NewLine + "DUMMY", CommonUtil.GetLastEventLogEntryCustom());
+                source.TraceData(TraceEventType.Error, 1, logEntry);
+
+#if WINDOWS
+        // Use actual Event Log
+        string actual = CommonUtil.GetLastEventLogEntryCustom();
+#else
+                // Use captured console output
+                consoleOutput.Flush();
+                string actual = consoleOutput.ToString().Trim(); // Remove extra newlines
+#endif
+
+                // Expected output
+                string expected = "DUMMY" + Environment.NewLine + "DUMMY";
+                Assert.AreEqual(expected, actual);
+            }
+            finally
+            {
+                // Restore console
+                Console.SetOut(originalOut);
+            }
 
         }
 
