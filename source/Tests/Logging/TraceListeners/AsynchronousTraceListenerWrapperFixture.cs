@@ -741,7 +741,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Asy
             [TestMethod]
             public void then_drops_outstanding_requests_and_closes_wrapped_listener()
             {
-                this.closeCompleted.WaitOne();
+                this.closeCompleted.WaitOne(TimeSpan.FromSeconds(30));
 
                 CollectionAssert.AreEquivalent(new[] { "one", "close" }, this.wrappedListener.requests);
             }
