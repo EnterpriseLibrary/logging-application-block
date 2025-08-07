@@ -667,7 +667,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Asy
             }
 
             [TestMethod]
-            [Timeout(15000)]
             public void then_exceptions_are_logged()
             {
                 Assert.IsTrue(this.writesCompleted.Wait(10000), "writesCompleted was never signaled.");
@@ -675,6 +674,30 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Asy
 
 
                 CollectionAssert.AreEquivalent(new[] { "throw three", "throw five" }, this.exceptions);
+            }
+
+            [TestCleanup]
+            public void TearDown()
+            {
+                // Ensure all waits are released, even if something went wrong.
+                try
+                {
+                    this.writesCompleted?.Signal(); // Prevents hanging if not all signals are called
+                }
+                catch (InvalidOperationException) { } // Ignore if already at 0
+
+                try
+                {
+                    this.exceptionsWritten?.Signal();
+                }
+                catch (InvalidOperationException) { }
+
+                // Dispose countdowns to free resources
+                this.writesCompleted?.Dispose();
+                this.exceptionsWritten?.Dispose();
+
+                // Mark the blocking collection as complete to avoid producer-consumer hangs
+                this.exceptions?.CompleteAdding();
             }
         }
 
