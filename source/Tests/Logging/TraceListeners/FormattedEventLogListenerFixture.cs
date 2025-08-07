@@ -52,7 +52,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
                         CommonUtil.EventLogNameCustom,
                         formatter);
 
-                LogSource source = new LogSource("", new[] { listener }, SourceLevels.All);
+                LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
                 LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
 
                 source.TraceData(TraceEventType.Error, 1, logEntry);
@@ -67,7 +67,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
 #endif
 
                 // Expected output
-                string expected = "DUMMY" + Environment.NewLine + "DUMMY";
+                string expected = "notfromconfig Error: 1 : DUMMY" + Environment.NewLine + "DUMMY";
                 Assert.AreEqual(expected, actual);
             }
             finally
