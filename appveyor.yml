@@ -7,7 +7,6 @@ services:
   - mssql2017
   - msmq
 
-timeoutInMinutes: 10
 
 install:
   - ps: $env:version_file_path = ".\version.props"
