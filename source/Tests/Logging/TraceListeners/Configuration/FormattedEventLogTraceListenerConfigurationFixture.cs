@@ -137,6 +137,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
         public void CanCreateInstanceFromGivenName()
         {
 
+#if WINDOWS
 
             FormattedEventLogTraceListenerData listenerData = new FormattedEventLogTraceListenerData("listener", "unknown source", "formatter");
 
@@ -164,6 +165,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             {
                 Assert.Inconclusive("In order to run the tests, please run Visual Studio as Administrator.\r\n{0}", ex.ToString());
             }
+#else
+            Assert.Inconclusive("This test requires EventLogTraceListener, which is only available on Windows.");
+#endif
         }
 
         [TestMethod]
