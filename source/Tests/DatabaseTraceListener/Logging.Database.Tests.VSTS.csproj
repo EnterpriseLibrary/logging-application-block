@@ -22,6 +22,7 @@
 	<PropertyGroup>
 		<EntLibCommon>..\..\..\..\Common\source\Src\Common\Common.csproj</EntLibCommon>
 		<EntLibData>..\..\..\..\Data\source\Src\Data\Data.csproj</EntLibData>
+		<EntLibDataSql>..\..\..\..\Data\source\Src\Data.SqlServer\Data.SqlServer.csproj</EntLibDataSql>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,6 +31,9 @@
 
 		<ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)') AND '$(EntLibDependencyType)' == 'Project'" />
 		<PackageReference Include="$(PrePackageName).Data$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
+
+		<ProjectReference Include="$(EntLibDataSql)" Condition="Exists('$(EntLibDataSql)') AND '$(EntLibDependencyType)' == 'Project'" />
+		<PackageReference Include="$(BypassPrePackageName).$(PrePackageName).Data.SqlServer$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibDataSql)') OR '$(EntLibDependencyType)' == 'Package'" />
 
 		<ProjectReference Include="..\..\Src\Logging\Logging.csproj" />
 		<ProjectReference Include="..\..\Src\DatabaseTraceListener\Logging.Database.csproj" />

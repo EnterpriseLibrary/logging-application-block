@@ -1,45 +1,46 @@
 <Project>
-  <Import Project="version.props" />
-  
-  <ItemGroup>
-    <Content Include="..\..\..\build\Assets\icon.png">
-      <Pack>true</Pack>
-      <Visible>False</Visible>
-      <PackagePath></PackagePath>
-    </Content>
-  </ItemGroup>
-    
-  <PropertyGroup>
-    <Version>$(MajorVersion).$(MinorVersion).$(ReleaseVersion)</Version>
-    <PreAssemblyName>Microsoft.Practices.EnterpriseLibrary</PreAssemblyName>
-    <PrePackageName>EnterpriseLibrary</PrePackageName>
-    <PostPackageName>.NetCore</PostPackageName>
-    <PackageReleaseNotes>This package is distributed as .NET Standard 2.0, .NET Core 2.0, .NET 4.0, 4.5, 4.6, 4.7 package.</PackageReleaseNotes>
+	<Import Project="version.props" />
 
-    <SemanticVersionSuffix></SemanticVersionSuffix>
-    <PackageVersion>$(Version)$(SemanticVersionSuffix)</PackageVersion>
-    <Authors>Enterprise Library Open Source Project</Authors>
-    <Copyright>Copyright © Microsoft 2008</Copyright>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/EnterpriseLibrary/logging-application-block</PackageProjectUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	<ItemGroup>
+		<Content Include="..\..\..\build\Assets\icon.png">
+			<Pack>true</Pack>
+			<Visible>False</Visible>
+			<PackagePath></PackagePath>
+		</Content>
+	</ItemGroup>
 
-    <RepositoryUrl>https://github.com/EnterpriseLibrary/logging-application-block</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>$(MajorVersion).$(MinorVersion).$(ReleaseVersion)</Version>
+		<PreAssemblyName>Microsoft.Practices.EnterpriseLibrary</PreAssemblyName>
+		<PrePackageName>EnterpriseLibrary</PrePackageName>
+		<BypassPrePackageName>Extended</BypassPrePackageName>
+		<PostPackageName>.NetCore</PostPackageName>
+		<PackageReleaseNotes>This package is distributed as .NET Standard 2.0, .NET Core 2.0, .NET 4.0, 4.5, 4.6, 4.7 package.</PackageReleaseNotes>
 
-  <PropertyGroup>
-    <SystemConfigurationConfigurationManagerVersion>4.5.*</SystemConfigurationConfigurationManagerVersion>
-    <SystemSecurityPermissionsVersion>4.5.*</SystemSecurityPermissionsVersion>
-    <SystemSecurityPrincipalWindowsVersion>4.5.*</SystemSecurityPrincipalWindowsVersion>
-  </PropertyGroup>
+		<SemanticVersionSuffix></SemanticVersionSuffix>
+		<PackageVersion>$(Version)$(SemanticVersionSuffix)</PackageVersion>
+		<Authors>Enterprise Library Open Source Project</Authors>
+		<Copyright>Copyright © Microsoft 2008</Copyright>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/EnterpriseLibrary/logging-application-block</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 
-  <PropertyGroup>
-    <!--In order to debug the EntLib dependencies open 'Logging (With Dependencies).sln' and change 'EntLibDependencyType' value to Project -->
-    <EntLibDependencyType>Package</EntLibDependencyType>
-    <EntLibCommonVersion>7.0.0-rc1</EntLibCommonVersion>
-    <EntLibDataVersion>7.0.0-rc1</EntLibDataVersion>
-  </PropertyGroup>
+		<RepositoryUrl>https://github.com/EnterpriseLibrary/logging-application-block</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<SystemConfigurationConfigurationManagerVersion>4.5.*</SystemConfigurationConfigurationManagerVersion>
+		<SystemSecurityPermissionsVersion>4.5.*</SystemSecurityPermissionsVersion>
+		<SystemSecurityPrincipalWindowsVersion>4.5.*</SystemSecurityPrincipalWindowsVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!--In order to debug the EntLib dependencies open 'Logging (With Dependencies).sln' and change 'EntLibDependencyType' value to Project -->
+		<EntLibDependencyType>Package</EntLibDependencyType>
+		<EntLibCommonVersion>7.0.0-rc1</EntLibCommonVersion>
+		<EntLibDataVersion>7.0.0-rc1</EntLibDataVersion>
+	</PropertyGroup>
 
 </Project>

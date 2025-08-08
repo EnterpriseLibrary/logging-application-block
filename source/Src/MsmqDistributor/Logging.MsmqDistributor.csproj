@@ -1,188 +1,192 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\..\package.props" />
+	<Import Project="..\..\..\package.props" />
 
-  <PropertyGroup>
-    <TargetFrameworks>net45;net46;net47;net472</TargetFrameworks>
+	<PropertyGroup>
+		<TargetFrameworks>net46;net47;net472</TargetFrameworks>
 
-    <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
-    <FileVersion>$(Version).$(Revision)</FileVersion>
+		<AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
+		<FileVersion>$(Version).$(Revision)</FileVersion>
 
-    <AssemblyName>$(PreAssemblyName).Logging.MsmqDistributor</AssemblyName>
-    <RootNamespace>$(PreAssemblyName).Logging.MsmqDistributor</RootNamespace>
-    <AssemblyTitle>Enterprise Library Logging Application Block MSMQ Distributor</AssemblyTitle>
+		<AssemblyName>$(PreAssemblyName).Logging.MsmqDistributor</AssemblyName>
+		<RootNamespace>$(PreAssemblyName).Logging.MsmqDistributor</RootNamespace>
+		<AssemblyTitle>Enterprise Library Logging Application Block MSMQ Distributor</AssemblyTitle>
 
-    <PackageId>$(PrePackageName).Logging.MsmqDistributor$(PostPackageName)</PackageId>
-    <Title>Logging Application Block MSMQ Distributor</Title>
-    <Description>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Description>
-    <Summary>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Summary>
-    <PackageTags>entlib entlib6 Enterprise Library msmq logging lab LOB futures OSS</PackageTags>
+		<PackageId>$(PrePackageName).Logging.MsmqDistributor$(PostPackageName)</PackageId>
+		<Title>Logging Application Block MSMQ Distributor</Title>
+		<Description>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Description>
+		<Summary>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Summary>
+		<PackageTags>entlib entlib6 Enterprise Library msmq logging lab LOB futures OSS</PackageTags>
 
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\EnterpriseLibrary.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-  </PropertyGroup>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\EnterpriseLibrary.snk</AssemblyOriginatorKeyFile>
+		<DelaySign>false</DelaySign>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <EntLibCommon>..\..\..\..\Common\source\Src\Common\Common.csproj</EntLibCommon>
-    <EntLibData>..\..\..\..\Data\source\Src\Data\Data.csproj</EntLibData>
-  </PropertyGroup>
+	<PropertyGroup>
+		<EntLibCommon>..\..\..\..\Common\source\Src\Common\Common.csproj</EntLibCommon>
+		<EntLibData>..\..\..\..\Data\source\Src\Data\Data.csproj</EntLibData>
+		<EntLibDataSql>..\..\..\..\Data\source\Src\Data.SqlServer\Data.SqlServer.csproj</EntLibDataSql>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
+	<ItemGroup>
+		<ProjectReference Include="$(EntLibCommon)" Condition="Exists('$(EntLibCommon)') AND '$(EntLibDependencyType)' == 'Project'" />
+		<PackageReference Include="$(PrePackageName).Common$(PostPackageName)" Version="$(EntLibCommonVersion)" Condition="!Exists('$(EntLibCommon)') OR '$(EntLibDependencyType)' == 'Package'" />
 
-    <ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)') AND '$(EntLibDependencyType)' == 'Project'" />
-    <PackageReference Include="$(PrePackageName).Data$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
+		<ProjectReference Include="$(EntLibData)" Condition="Exists('$(EntLibData)') AND '$(EntLibDependencyType)' == 'Project'" />
+		<PackageReference Include="$(PrePackageName).Data$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibData)') OR '$(EntLibDependencyType)' == 'Package'" />
 
-    <ProjectReference Include="..\Logging\Logging.csproj" />
-  </ItemGroup>
+		<ProjectReference Include="$(EntLibDataSql)" Condition="Exists('$(EntLibDataSql)') AND '$(EntLibDependencyType)' == 'Project'" />
+		<PackageReference Include="$(BypassPrePackageName).$(PrePackageName).Data.SqlServer$(PostPackageName)" Version="$(EntLibDataVersion)" Condition="!Exists('$(EntLibDataSql)') OR '$(EntLibDependencyType)' == 'Package'" />
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
+		<ProjectReference Include="..\Logging\Logging.csproj" />
+	</ItemGroup>
 
-  </ItemGroup>
+	<ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
 
-  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp')) AND '$(TargetFramework)' != 'net8.0'">
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Messaging" />
-    <Reference Include="System.ServiceProcess" />
-  </ItemGroup>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="..\..\GlobalAssemblyInfo.cs">
-      <Link>GlobalAssemblyInfo.cs</Link>
-    </Compile>
+	<ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp')) AND '$(TargetFramework)' != 'net8.0'">
+		<Reference Include="System.Configuration" />
+		<Reference Include="System.Configuration.Install" />
+		<Reference Include="System.Management" />
+		<Reference Include="System.Messaging" />
+		<Reference Include="System.ServiceProcess" />
+	</ItemGroup>
 
-    <None Include="..\..\Logging.licenseheader">
-      <Link>Logging.licenseheader</Link>
-    </None>
+	<ItemGroup>
+		<Compile Include="..\..\GlobalAssemblyInfo.cs">
+			<Link>GlobalAssemblyInfo.cs</Link>
+		</Compile>
 
-    <Compile Update="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+		<None Include="..\..\Logging.licenseheader">
+			<Link>Logging.licenseheader</Link>
+		</None>
 
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
 
-    <EmbeddedResource Update="DistributorService.resx">
-      <DependentUpon>DistributorService.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
 
-    <EmbeddedResource Update="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+		<EmbeddedResource Update="DistributorService.resx">
+			<DependentUpon>DistributorService.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
 
-    <Compile Update="DistributorService.cs" />
+		<EmbeddedResource Update="ProjectInstaller.resx">
+			<DependentUpon>ProjectInstaller.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
 
-    <None Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+		<Compile Update="DistributorService.cs" />
 
-  <ItemGroup>
-    <Content Include="..\..\NuGet\Readme.txt">
-      <Pack>true</Pack>
-      <Visible>False</Visible>
-      <PackagePath></PackagePath>
-    </Content>
+		<None Include="App.config">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
-    <Content Include="..\..\NuGet\tools\SharedCommon\install.ps1">
-      <Pack>true</Pack>
-      <Visible>False</Visible>
-      <PackagePath>tools</PackagePath>
-    </Content>
+	<ItemGroup>
+		<Content Include="..\..\NuGet\Readme.txt">
+			<Pack>true</Pack>
+			<Visible>False</Visible>
+			<PackagePath></PackagePath>
+		</Content>
 
-    <Content Include="..\..\NuGet\tools\SharedCommon\Utils.psm1">
-      <Pack>true</Pack>
-      <Visible>False</Visible>
-      <PackagePath>tools</PackagePath>
-    </Content>
-  </ItemGroup>
+		<Content Include="..\..\NuGet\tools\SharedCommon\install.ps1">
+			<Pack>true</Pack>
+			<Visible>False</Visible>
+			<PackagePath>tools</PackagePath>
+		</Content>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
-    <Compile Remove="**\*Msmq*.cs" />
-    <Compile Remove="**\*EventLog*.cs" />
-    <Compile Remove="**\*.Desktop.cs" />
-    <Compile Remove="**\*XmlTraceListener*.cs" />
-    <Compile Remove="ExtraInformation\Helpers\*ContextUtils.cs" />
-    <Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
-  </ItemGroup>
+		<Content Include="..\..\NuGet\tools\SharedCommon\Utils.psm1">
+			<Pack>true</Pack>
+			<Visible>False</Visible>
+			<PackagePath>tools</PackagePath>
+		</Content>
+	</ItemGroup>
 
-  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
-    <Compile Remove="System.Runtime.Remoting.Messaging\*.cs" />
-  </ItemGroup>
+	<ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp'))">
+		<Compile Remove="**\*Msmq*.cs" />
+		<Compile Remove="**\*EventLog*.cs" />
+		<Compile Remove="**\*.Desktop.cs" />
+		<Compile Remove="**\*XmlTraceListener*.cs" />
+		<Compile Remove="ExtraInformation\Helpers\*ContextUtils.cs" />
+		<Compile Remove="ExtraInformation\ComPlusInformationProvider.cs" />
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices">
-      <Version>8.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Resources.Extensions">
-      <Version>8.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.ServiceProcess.ServiceController">
-      <Version>8.0.1</Version>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp'))">
+		<Compile Remove="System.Runtime.Remoting.Messaging\*.cs" />
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices">
-      <Version>8.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Resources.Extensions">
-      <Version>8.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.ServiceProcess.ServiceController">
-      <Version>8.0.1</Version>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+		<PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices">
+			<Version>8.0.1</Version>
+		</PackageReference>
+		<PackageReference Include="System.Resources.Extensions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.ServiceProcess.ServiceController">
+			<Version>8.0.1</Version>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices">
-      <Version>8.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Resources.Extensions">
-      <Version>8.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.ServiceProcess.ServiceController">
-      <Version>8.0.1</Version>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+		<PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices">
+			<Version>8.0.1</Version>
+		</PackageReference>
+		<PackageReference Include="System.Resources.Extensions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.ServiceProcess.ServiceController">
+			<Version>8.0.1</Version>
+		</PackageReference>
+	</ItemGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)..\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>$(SolutionDir)..\bin\Debug\$(AssemblyName).xml</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices">
+			<Version>8.0.1</Version>
+		</PackageReference>
+		<PackageReference Include="System.Resources.Extensions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.ServiceProcess.ServiceController">
+			<Version>8.0.1</Version>
+		</PackageReference>
+	</ItemGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)..\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <DocumentationFile>$(SolutionDir)..\bin\Release\$(AssemblyName).xml</DocumentationFile>
-    <DebugSymbols>true</DebugSymbols>
-    <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>$(SolutionDir)..\bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DocumentationFile>$(SolutionDir)..\bin\Debug\$(AssemblyName).xml</DocumentationFile>
+		<Prefer32Bit>false</Prefer32Bit>
+		<CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<DebugType>full</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>$(SolutionDir)..\bin\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<DocumentationFile>$(SolutionDir)..\bin\Release\$(AssemblyName).xml</DocumentationFile>
+		<DebugSymbols>true</DebugSymbols>
+		<Prefer32Bit>false</Prefer32Bit>
+		<CodeAnalysisRuleSet>..\..\EnterpriseLibrary.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
 </Project>
