@@ -71,6 +71,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
         [TestMethod]
         public void CanCreateInstanceFromConfigurationFile()
         {
+#if NETFRAMEWORK
             SystemDiagnosticsTraceListenerData listenerData
                 = new SystemDiagnosticsTraceListenerData("listener", typeof(DelimitedListTraceListener), "log.txt");
             listenerData.SetAttributeValue("delimiter", "||");
@@ -85,6 +86,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             var innerListener = (DelimitedListTraceListener)listener;
 
             Assert.AreEqual("||", innerListener.Delimiter);
+#else
+            Assert.Inconclusive("This test is not applicable for .NET Core due to limitations in configuration handling."); 
+#endif
         }
     }
 }
