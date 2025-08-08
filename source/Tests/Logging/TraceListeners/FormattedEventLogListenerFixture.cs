@@ -37,52 +37,21 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         [TestMethod]
         public void ListenerWillUseFormatterIfExists()
         {
-            // Setup formatter
-            var formatter = new TextFormatter("DUMMY{newline}DUMMY");
+            EventLog log = CommonUtil.GetCustomEventLog();
+            log.Clear();
 
-            // Capture Console output
-            var originalOut = Console.Out;
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);  // Redirect console
+            FormattedEventLogTraceListener listener =
+                new FormattedEventLogTraceListener(
+                    CommonUtil.EventLogSourceName,
+                    CommonUtil.EventLogNameCustom,
+                    new TextFormatter("DUMMY{newline}DUMMY"));
 
-            try
-            {
-                FormattedEventLogTraceListener listener =
-                    new FormattedEventLogTraceListener(
-                        CommonUtil.EventLogSourceName,
-                        CommonUtil.EventLogNameCustom,
-                        formatter);
+            LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
+            LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
 
-                LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
-                LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
+            source.TraceData(TraceEventType.Error, 1, logEntry);
 
-                source.TraceData(TraceEventType.Error, 1, logEntry);
-
-                string actual;
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    // Use actual Event Log
-                    actual = CommonUtil.GetLastEventLogEntryCustom();
-                }
-
-                else
-                {
-                    // Use captured console output
-                    consoleOutput.Flush();
-                    actual = consoleOutput.ToString().Trim(); // Remove extra newlines
-
-                }
-
-
-                // Expected output
-                string expected = "notfromconfig Error: 1 : DUMMY" + Environment.NewLine + "DUMMY";
-                Assert.AreEqual(expected, actual);
-            }
-            finally
-            {
-                // Restore console
-                Console.SetOut(originalOut);
-            }
+            Assert.AreEqual("DUMMY" + Environment.NewLine + "DUMMY", CommonUtil.GetLastEventLogEntryCustom());
 
         }
 
