@@ -11,7 +11,7 @@
 		<RootNamespace>$(PreAssemblyName).Logging.MsmqDistributor</RootNamespace>
 		<AssemblyTitle>Enterprise Library Logging Application Block MSMQ Distributor</AssemblyTitle>
 
-		<PackageId>$(PrePackageName).Logging.MsmqDistributor$(PostPackageName)</PackageId>
+		<PackageId>$(BypassPrePackageName).$(PrePackageName).Logging.MsmqDistributor$(PostPackageName)</PackageId>
 		<Title>Logging Application Block MSMQ Distributor</Title>
 		<Description>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Description>
 		<Summary>This logging MSMQ Distributor lets developer to distribute log entries with MSMQ.</Summary>
