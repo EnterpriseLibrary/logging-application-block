@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Common.Utility;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
@@ -25,22 +26,18 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         /// </summary>
         public const string DefaultMachineName = ".";
 
+
+
         /// <summary>
         /// Initializes a new instance of <see cref="FormattedEventLogTraceListener"/> with a 
         /// <see cref="EventLogTraceListener"/> initialized with <see cref="EventLog"/>.
         /// </summary>
         /// <param name="eventLog">The event log for the wrapped listener.</param>
-#if WINDOWS
         public FormattedEventLogTraceListener(EventLog eventLog)
-            : base(new EventLogTraceListener(eventLog))
+                   : base(CreateListener(eventLog))
         {
         }
-#else
-        public FormattedEventLogTraceListener(EventLog eventLog)
-            : base(new ConsoleTraceListener())
-        {
-        }
-#endif
+
 
 
         /// <summary>
@@ -50,35 +47,20 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         /// </summary>
         /// <param name="eventLog">The event log for the wrapped listener.</param>
         /// <param name="formatter">The formatter for the wrapper.</param>
-#if WINDOWS
         public FormattedEventLogTraceListener(EventLog eventLog, ILogFormatter formatter)
-            : base(new EventLogTraceListener(eventLog), formatter)
+                   : base(CreateListener(eventLog), formatter)
         {
         }
-#else
-        public FormattedEventLogTraceListener(EventLog eventLog, ILogFormatter formatter)
-            : base(new ConsoleTraceListener(), formatter)
-        {
-        }
-#endif
         /// <summary>
         /// Initializes a new instance of <see cref="FormattedEventLogTraceListener"/> with a 
         /// <see cref="EventLogTraceListener"/> initialized with a source name.
         /// </summary>
         /// <param name="source">The source name for the wrapped listener.</param>
-#if WINDOWS
         public FormattedEventLogTraceListener(string source)
-            : base(new EventLogTraceListener(source))
+                    : base(CreateListener(source))
         {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
+            Guard.ArgumentNotNullOrEmpty(source, nameof(source));
         }
-#else
-        public FormattedEventLogTraceListener(string source)
-            : base(new ConsoleTraceListener())
-        {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
-        }
-#endif
 
 
         /// <summary>
@@ -88,20 +70,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         /// </summary>
         /// <param name="source">The source name for the wrapped listener.</param>
         /// <param name="formatter">The formatter for the wrapper.</param>
-#if WINDOWS
+        public FormattedEventLogTraceListener(string source, ILogFormatter formatter)
+                  : base(CreateListener(source), formatter)
+        {
+            Guard.ArgumentNotNullOrEmpty(source, nameof(source));
+        }
 
-        public FormattedEventLogTraceListener(string source, ILogFormatter formatter)
-            : base(new EventLogTraceListener(source), formatter)
-        {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
-        }
-#else
-        public FormattedEventLogTraceListener(string source, ILogFormatter formatter)
-            : base(new ConsoleTraceListener(), formatter)
-        {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
-        }
-#endif
         /// <summary>
         /// Initializes a new instance of <see cref="FormattedEventLogTraceListener"/> with an 
         /// <see cref="ILogFormatter"/> and a <see cref="EventLogTraceListener"/> 
@@ -110,19 +84,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         /// <param name="source">The source name for the wrapped listener.</param>
         /// <param name="log">The name of the event log.</param>
         /// <param name="formatter">The formatter for the wrapper.</param>
-#if WINDOWS
         public FormattedEventLogTraceListener(string source, string log, ILogFormatter formatter)
-            : base(new EventLogTraceListener(new EventLog(log, DefaultMachineName, source)), formatter)
+                  : base(CreateListener(source, log, DefaultMachineName), formatter)
         {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
+            Guard.ArgumentNotNullOrEmpty(source, nameof(source));
         }
-#else
-        public FormattedEventLogTraceListener(string source, string log, ILogFormatter formatter)
-            : base(new ConsoleTraceListener(), formatter)
-        {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
-        }
-#endif
+
 
         /// <summary>
         /// Initializes a new instance of <see cref="FormattedEventLogTraceListener"/> with an 
@@ -132,22 +99,36 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners
         /// <param name="log">The name of the event log.</param>
         /// <param name="machineName">The machine name for the event log.</param>
         /// <param name="formatter">The formatter for the wrapper.</param>
-#if WINDOWS
         public FormattedEventLogTraceListener(string source, string log, string machineName, ILogFormatter formatter)
-            : base(new EventLogTraceListener(new EventLog(log, NormalizeMachineName(machineName), source)), formatter)
+                    : base(CreateListener(source, log, NormalizeMachineName(machineName)), formatter)
         {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
+            Guard.ArgumentNotNullOrEmpty(source, nameof(source));
         }
-#else
-        public FormattedEventLogTraceListener(string source, string log, string machineName, ILogFormatter formatter)
-            : base(new ConsoleTraceListener(), formatter)
+        private static TraceListener CreateListener(EventLog eventLog)
         {
-            Guard.ArgumentNotNullOrEmpty(source, "source");
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return new EventLogTraceListener(eventLog);
+            return new ConsoleTraceListener();
         }
-#endif
+
+        private static TraceListener CreateListener(string source)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return new EventLogTraceListener(source);
+            return new ConsoleTraceListener();
+        }
+
+        private static TraceListener CreateListener(string source, string log, string machineName)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                return new EventLogTraceListener(new EventLog(log, machineName, source));
+            return new ConsoleTraceListener();
+        }
+
         private static string NormalizeMachineName(string machineName)
         {
             return string.IsNullOrEmpty(machineName) ? DefaultMachineName : machineName;
         }
+         
     }
 }
