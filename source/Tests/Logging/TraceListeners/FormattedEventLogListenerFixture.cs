@@ -110,10 +110,20 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
 
             Assert.IsNotNull(listener.Formatter);
             Assert.IsNotNull(listener.InnerListener);
-            Assert.AreEqual(typeof(EventLogTraceListener), listener.InnerListener.GetType());
-            Assert.AreEqual("unknown source", ((EventLogTraceListener)listener.InnerListener).EventLog.Source);
-            Assert.AreEqual("", ((EventLogTraceListener)listener.InnerListener).EventLog.Log);
-            Assert.AreEqual(".", ((EventLogTraceListener)listener.InnerListener).EventLog.MachineName);
+
+            bool isWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
+
+            if (isWindows)
+            {
+                Assert.AreEqual(typeof(EventLogTraceListener), listener.InnerListener.GetType());
+                Assert.AreEqual("unknown source", ((EventLogTraceListener)listener.InnerListener).EventLog.Source);
+                Assert.AreEqual("", ((EventLogTraceListener)listener.InnerListener).EventLog.Log);
+                Assert.AreEqual(".", ((EventLogTraceListener)listener.InnerListener).EventLog.MachineName);
+            }
+            else
+            {
+                Assert.AreEqual(typeof(ConsoleTraceListener), listener.InnerListener.GetType());
+            }
         }
 
         [TestMethod]
