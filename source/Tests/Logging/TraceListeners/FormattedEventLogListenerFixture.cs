@@ -3,6 +3,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Security;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
@@ -57,14 +58,21 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
 
                 source.TraceData(TraceEventType.Error, 1, logEntry);
 
-#if WINDOWS
-        // Use actual Event Log
-        string actual = CommonUtil.GetLastEventLogEntryCustom();
-#else
-                // Use captured console output
-                consoleOutput.Flush();
-                string actual = consoleOutput.ToString().Trim(); // Remove extra newlines
-#endif
+                string actual;
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    // Use actual Event Log
+                    actual = CommonUtil.GetLastEventLogEntryCustom();
+                }
+
+                else
+                {
+                    // Use captured console output
+                    consoleOutput.Flush();
+                    actual = consoleOutput.ToString().Trim(); // Remove extra newlines
+
+                }
+
 
                 // Expected output
                 string expected = "notfromconfig Error: 1 : DUMMY" + Environment.NewLine + "DUMMY";
