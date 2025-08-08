@@ -51,6 +51,7 @@ build:
 after_build:
   - cmd: scripts\InstallTestAssemblies.bat
   - cmd: scripts\CreateLoggingDatabase.bat
+  - dir /s /b
 
 after_test:
   - cmd: scripts\UninstallTestAssemblies.bat
@@ -68,6 +69,5 @@ on_success:
   - git pull
   - git commit -m "Revision update by AppVeyor [ci skip]" -- version.props
   - git push
-  
-build_script:
-  - dir /s /b
+
+ 
