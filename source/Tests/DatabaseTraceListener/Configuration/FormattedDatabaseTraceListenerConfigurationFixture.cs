@@ -112,6 +112,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.Configura
         }
 
         [TestMethod]
+        [Ignore("Not supported in .net 5+")]
         public void CanCreateInstanceFromGivenName()
         {
             FormattedDatabaseTraceListenerData listenerData =
