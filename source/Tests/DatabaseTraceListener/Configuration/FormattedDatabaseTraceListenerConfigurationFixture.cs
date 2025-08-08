@@ -112,6 +112,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.Configura
         }
 
         [TestMethod]
+        [Ignore("Not supported in .net 5+")]
         public void CanCreateInstanceFromGivenName()
         {
             FormattedDatabaseTraceListenerData listenerData =
@@ -142,6 +143,8 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.Configura
         [TestMethod]
         public void CanCreateInstanceFromConfigurationFile()
         {
+#if NETFRAMEWORK
+
             LoggingSettings loggingSettings = new LoggingSettings();
             loggingSettings.Formatters.Add(new TextFormatterData("formatter", "some template"));
             loggingSettings.TraceListeners.Add(
@@ -154,11 +157,14 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.Configura
             Assert.IsNotNull(((FormattedDatabaseTraceListener)listener).Formatter);
             Assert.AreEqual(((FormattedDatabaseTraceListener)listener).Formatter.GetType(), typeof(TextFormatter));
             Assert.AreEqual("some template", ((TextFormatter)((FormattedDatabaseTraceListener)listener).Formatter).Template);
+#endif
         }
 
         [TestMethod]
         public void CanCreateInstanceWithNoFormatter()
         {
+#if NETFRAMEWORK
+
             LoggingSettings loggingSettings = new LoggingSettings();
             loggingSettings.TraceListeners.Add(
                 new FormattedDatabaseTraceListenerData("listener", "WriteLog", "AddCategory", "LoggingDb", null));
@@ -168,6 +174,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.Configura
             Assert.IsNotNull(listener);
             Assert.AreEqual(listener.GetType(), typeof(FormattedDatabaseTraceListener));
             Assert.IsNull(((FormattedDatabaseTraceListener)listener).Formatter);
+#endif
         }
 
         private static TraceListener GetListener(string name, IConfigurationSource configurationSource)

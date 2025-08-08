@@ -184,7 +184,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
             this.additionalInfo.Add("AppDomainName:", "AppDomainName: " + AppDomain.CurrentDomain.FriendlyName);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
+
                 this.additionalInfo.Add("WindowsIdentity:", "WindowsIdentity: " + GetWindowsIdentity());
+
+
             }
         }
 
@@ -192,7 +195,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
         {
             try
             {
+#if !NET8_0
                 return WindowsIdentity.GetCurrent().Name;
+#else
+                return "";
+#endif
             }
             catch (SecurityException)
             {

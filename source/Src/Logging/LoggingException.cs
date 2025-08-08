@@ -44,6 +44,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
         {
         }
 
+#if !NET8_0
+        
+
         /// <summary>
         /// Initializes a new instance of the LoggingException class with 
         /// serialized data.
@@ -56,5 +59,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
             : base(info, context)
         {
         }
+#endif
     }
 }

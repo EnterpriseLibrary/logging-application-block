@@ -3,6 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+#if NET8_0
+using System.Text.Json;
+#endif
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
@@ -65,6 +68,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Formatters
             Assert.AreEqual(formatter.GetType(), typeof(BinaryLogFormatter));
         }
 
+#if !NET8_0
         [TestMethod]
         public void CanDeserializeFormattedEntry()
         {
@@ -86,6 +90,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Formatters
             Assert.AreEqual(entry.Message, deserializedEntry.Message);
             Assert.AreEqual(entry.Title, deserializedEntry.Title);
         }
+
 
         [TestMethod]
         public void CanDeserializeFormattedCustomEntry()
@@ -116,5 +121,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.Formatters
             Assert.AreEqual(entry.AcmeCoField2, deserializedEntry.AcmeCoField2);
             Assert.AreEqual(entry.AcmeCoField3, deserializedEntry.AcmeCoField3);
         }
+#endif
+
     }
 }

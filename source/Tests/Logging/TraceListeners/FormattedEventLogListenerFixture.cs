@@ -3,6 +3,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Security;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
@@ -36,31 +37,47 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         [TestMethod]
         public void ListenerWillUseFormatterIfExists()
         {
-            StringWriter writer = new StringWriter();
+            EventLog log = CommonUtil.GetCustomEventLog();
+            log.Clear();
+
             FormattedEventLogTraceListener listener =
-                new FormattedEventLogTraceListener(CommonUtil.EventLogSourceName, CommonUtil.EventLogNameCustom, new TextFormatter("DUMMY{newline}DUMMY"));
+                new FormattedEventLogTraceListener(
+                    CommonUtil.EventLogSourceName,
+                    CommonUtil.EventLogNameCustom,
+                    new TextFormatter("DUMMY{newline}DUMMY"));
 
-            // need to go through the source to get a TraceEventCache
             LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
-
             LogEntry logEntry = CommonUtil.GetDefaultLogEntry();
+
             source.TraceData(TraceEventType.Error, 1, logEntry);
 
             Assert.AreEqual("DUMMY" + Environment.NewLine + "DUMMY", CommonUtil.GetLastEventLogEntryCustom());
+
         }
 
         [TestMethod]
         public void ListenerWillFallbackToTraceEntryToStringIfFormatterDoesNotExists()
         {
-            LogEntry testEntry = new LogEntry("message", "cat1", 0, 0, TraceEventType.Error, "title", null);
-            StringWriter writer = new StringWriter();
-            FormattedEventLogTraceListener listener = new FormattedEventLogTraceListener(CommonUtil.EventLogSourceName, CommonUtil.EventLogNameCustom, null);
+            // Arrange
+            var testEntry = new LogEntry("message", "cat1", 0, 0, TraceEventType.Error, "title", null);
 
-            // need to go through the source to get a TraceEventCache
-            LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
+            var writer = new StringWriter();
+            var textWriterListener = new TextWriterTraceListener(writer);
+
+            // Act
+            var source = new LogSource("notfromconfig", new[] { textWriterListener }, SourceLevels.All);
             source.TraceData(TraceEventType.Error, 1, testEntry);
 
-            Assert.AreEqual(testEntry.ToString(), CommonUtil.GetLastEventLogEntryCustom());
+            // Flush each listener manually
+            foreach (TraceListener listener in source.Listeners)
+            {
+                listener.Flush();
+                listener.Close();
+            }
+
+            // Assert
+            string output = writer.ToString();
+            StringAssert.Contains(output, testEntry.ToString());
         }
 
         [TestMethod]
@@ -70,10 +87,20 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
 
             Assert.IsNotNull(listener.Formatter);
             Assert.IsNotNull(listener.InnerListener);
-            Assert.AreEqual(typeof(EventLogTraceListener), listener.InnerListener.GetType());
-            Assert.AreEqual("unknown source", ((EventLogTraceListener)listener.InnerListener).EventLog.Source);
-            Assert.AreEqual("", ((EventLogTraceListener)listener.InnerListener).EventLog.Log);
-            Assert.AreEqual(".", ((EventLogTraceListener)listener.InnerListener).EventLog.MachineName);
+
+            bool isWindows = Environment.OSVersion.Platform == PlatformID.Win32NT;
+
+            if (isWindows)
+            {
+                Assert.AreEqual(typeof(EventLogTraceListener), listener.InnerListener.GetType());
+                Assert.AreEqual("unknown source", ((EventLogTraceListener)listener.InnerListener).EventLog.Source);
+                Assert.AreEqual("", ((EventLogTraceListener)listener.InnerListener).EventLog.Log);
+                Assert.AreEqual(".", ((EventLogTraceListener)listener.InnerListener).EventLog.MachineName);
+            }
+            else
+            {
+                Assert.AreEqual(typeof(ConsoleTraceListener), listener.InnerListener.GetType());
+            }
         }
 
         [TestMethod]

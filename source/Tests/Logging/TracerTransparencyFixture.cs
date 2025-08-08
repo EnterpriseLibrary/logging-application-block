@@ -18,13 +18,16 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
 {
     public class BasePartialTrustContext : ArrangeActAssert
     {
+#if NETFRAMEWORK
         protected AppDomain appDomain;
+#endif
         protected LoggerProxy loggerProxy;
 
         protected override void Arrange()
         {
             base.Arrange();
 
+#if NETFRAMEWORK
             var fullyTrustedAssemblies = this.GetFullyTrustedAssemblies().ToArray();
             var unsignedAssemblies = fullyTrustedAssemblies.Where(sn => sn.PublicKey.ToString() == "");
             if (unsignedAssemblies.Any())
@@ -44,21 +47,30 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
                     set,
                     fullyTrustedAssemblies);
 
-            this.loggerProxy = ((LoggerProxy)this.appDomain.CreateInstanceAndUnwrap(typeof(LoggerProxy).Assembly.FullName, typeof(LoggerProxy).FullName));
+            this.loggerProxy = ((LoggerProxy)this.appDomain.CreateInstanceAndUnwrap(
+                typeof(LoggerProxy).Assembly.FullName,
+                typeof(LoggerProxy).FullName));
+#else
+            Assert.Inconclusive("Partial trust AppDomains are not supported in .NET Core or .NET 5+.");
+
+#endif
+
             this.loggerProxy.Setup();
         }
 
         protected override void Teardown()
         {
+#if NETFRAMEWORK
             if (this.appDomain != null)
             {
                 AppDomain.Unload(this.appDomain);
             }
+#endif
         }
 
+#if NETFRAMEWORK
         protected virtual void AddPermissions(PermissionSet set)
         {
-            // These allow to look at the security exceptions
             set.AddPermission(new SecurityPermission(SecurityPermissionFlag.ControlEvidence | SecurityPermissionFlag.ControlPolicy));
         }
 
@@ -66,11 +78,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         {
             return new StrongName[0];
         }
+#endif
     }
-
     public class given_log_writer_in_partial_trust_app_domain_without_unmanaged_code_permission : BasePartialTrustContext
     {
         [TestClass]
+        
         public class when_tracing_operation : given_log_writer_in_partial_trust_app_domain_without_unmanaged_code_permission
         {
             private IDictionary<string, string>[] entryProperties;
@@ -112,6 +125,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         }
 
         [TestClass]
+        
         public class when_tracing_operation_with_explicit_activity_id : given_log_writer_in_partial_trust_app_domain_without_unmanaged_code_permission
         {
             private IDictionary<string, string>[] entryProperties;
@@ -155,6 +169,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         }
     }
 
+ 
     public class given_log_writer_in_partial_trust_app_domain_with_unmanaged_code_permission : BasePartialTrustContext
     {
         protected override void AddPermissions(PermissionSet set)
@@ -165,6 +180,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         }
 
         [TestClass]
+        [Ignore("Ignored in .NET 5+ because partial trust AppDomains are not supported.")]
         public class when_tracing_operation : given_log_writer_in_partial_trust_app_domain_with_unmanaged_code_permission
         {
             private IDictionary<string, string>[] entryProperties;
@@ -230,6 +246,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         }
 
         [TestClass]
+        [Ignore("Ignored in .NET 5+ because partial trust AppDomains are not supported.")]
         public class when_tracing_operation_with_explicit_activity_id : given_log_writer_in_partial_trust_app_domain_with_unmanaged_code_permission
         {
             private IDictionary<string, string>[] entryProperties;
@@ -296,6 +313,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
             }
         }
     }
+
 
     public class given_log_writer_in_partial_trust_app_domain_with_fully_trusted_logging_and_without_unmanaged_code_permission : BasePartialTrustContext
     {
@@ -418,6 +436,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         }
 
         [TestClass]
+        
         public class when_tracing_operation : given_log_writer_in_partial_trust_app_domain_with_fully_trusted_logging_and_unmanaged_code_permission
         {
             private IDictionary<string, string>[] entryProperties;
@@ -483,6 +502,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
         }
 
         [TestClass]
+        
         public class when_tracing_operation_with_explicit_activity_id : given_log_writer_in_partial_trust_app_domain_with_fully_trusted_logging_and_unmanaged_code_permission
         {
             private IDictionary<string, string>[] entryProperties;
@@ -549,7 +569,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TracerTransparency
             }
         }
     }
-
+ 
     public class LoggerProxy : MarshalByRefObject
     {
         private MockTraceListener traceListener;

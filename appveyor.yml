@@ -1,11 +1,12 @@
-image: Visual Studio 2017
+image: Visual Studio 2022
 configuration: Release
 platform: Any CPU
 skip_tags: true
 
 services:
-  - mssql2016
+  - mssql2017
   - msmq
+
 
 install:
   - ps: $env:version_file_path = ".\version.props"
@@ -21,6 +22,19 @@ install:
   - ps: $xRevision = Select-Xml -Path $env:version_file_path -XPath "/Project/PropertyGroup/Revision"
   - ps: $xRevision.Node.InnerText = $env:revision
   - ps: $xRevision.Node.OwnerDocument.Save($xRevision.Path)
+  - ps: |
+      Write-Host "Checking MSMQ service..."
+      $service = Get-Service MSMQ -ErrorAction SilentlyContinue
+      if ($service) {
+        Write-Host "MSMQ Service Status: $($service.Status)"
+        if ($service.Status -ne "Running") {
+          Start-Service MSMQ
+          Write-Host "Started MSMQ Service."
+        }
+      } else {
+        Write-Error "MSMQ Service not found on this image."
+        exit 1
+      }
 
 dotnet_csproj:
   patch: false
@@ -32,10 +46,12 @@ build:
   project: source\Logging.sln
   parallel: true
   verbosity: minimal
-
+  
+ 
 after_build:
   - cmd: scripts\InstallTestAssemblies.bat
   - cmd: scripts\CreateLoggingDatabase.bat
+  - dir /s /b
 
 after_test:
   - cmd: scripts\UninstallTestAssemblies.bat
@@ -45,11 +61,13 @@ artifacts:
 - path: 'bin\Release\EnterpriseLibrary.Logging.*.nupkg'
   name: 'EnterpriseLibrary.Logging'
 
-on_success:
-  - ps: git config --global credential.helper store
-  - ps: Add-Content "$HOME\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
-  - ps: git config --global user.email "$env:github_email"
-  - ps: git config --global user.name "$env:github_name"
-  - git pull
-  - git commit -m "Revision update by AppVeyor [ci skip]" -- version.props
-  - git push
+#on_success:
+#  - ps: git config --global credential.helper store
+#  - ps: Add-Content "$HOME\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+#  - ps: git config --global user.email "$env:github_email"
+#  - ps: git config --global user.name "$env:github_name"
+#  - git pull
+#  - git commit -m "Revision update by AppVeyor [ci skip]" -- version.props
+#  - git push
+
+ 

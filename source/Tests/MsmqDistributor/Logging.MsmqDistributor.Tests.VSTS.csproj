@@ -53,9 +53,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
 
-    <Compile Update="DistributorServiceTestFacade.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Update="DistributorServiceTestFacade.cs" />
 
     <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
