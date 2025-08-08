@@ -13,6 +13,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 {
+#if NETFRAMEWORK
+
     [TestClass]
     public class FormattedDatabaseTraceListenerFixture
     {
@@ -190,4 +192,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
             }
         }
     }
+#endif
+
 }
