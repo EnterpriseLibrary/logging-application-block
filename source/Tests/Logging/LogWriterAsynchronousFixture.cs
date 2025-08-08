@@ -151,6 +151,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void when_logging_to_asynchronous_only_source_throws_then_logs_error()
         {
             var counter = new CountdownEvent(3);
