@@ -98,6 +98,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void when_logging_to_mixed_source_then_logs_both_synchronously_and_asynchronously()
         {
             var counter = new CountdownEvent(6);

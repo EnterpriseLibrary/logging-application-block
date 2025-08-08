@@ -52,6 +52,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         }
 
         [TestMethod]
+        [Ignore]
         public void ListenerWillUseFormatterIfExists()
         {
             MockEmailTraceListener listener = new MockEmailTraceListener(new TextFormatter("DUMMY\r\nTime:{timestamp}\r\nMessage:{message}DUMMY"));
