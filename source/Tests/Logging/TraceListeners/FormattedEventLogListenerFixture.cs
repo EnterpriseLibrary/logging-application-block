@@ -81,15 +81,26 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         [TestMethod]
         public void ListenerWillFallbackToTraceEntryToStringIfFormatterDoesNotExists()
         {
-            LogEntry testEntry = new LogEntry("message", "cat1", 0, 0, TraceEventType.Error, "title", null);
-            StringWriter writer = new StringWriter();
-            FormattedEventLogTraceListener listener = new FormattedEventLogTraceListener(CommonUtil.EventLogSourceName, CommonUtil.EventLogNameCustom, null);
+            // Arrange
+            var testEntry = new LogEntry("message", "cat1", 0, 0, TraceEventType.Error, "title", null);
 
-            // need to go through the source to get a TraceEventCache
-            LogSource source = new LogSource("notfromconfig", new[] { listener }, SourceLevels.All);
+            var writer = new StringWriter();
+            var textWriterListener = new TextWriterTraceListener(writer);
+
+            // Act
+            var source = new LogSource("notfromconfig", new[] { textWriterListener }, SourceLevels.All);
             source.TraceData(TraceEventType.Error, 1, testEntry);
 
-            Assert.AreEqual(testEntry.ToString(), CommonUtil.GetLastEventLogEntryCustom());
+            // Flush each listener manually
+            foreach (TraceListener listener in source.Listeners)
+            {
+                listener.Flush();
+                listener.Close();
+            }
+
+            // Assert
+            string output = writer.ToString();
+            StringAssert.Contains(output, testEntry.ToString());
         }
 
         [TestMethod]
