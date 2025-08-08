@@ -734,6 +734,8 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Asy
 
                 this.writesRequested.Wait();
 
+                this.continueEvent.Release();
+
                 Task.Run(() => { Thread.Sleep(100); this.continueEvent.Release(); });
                 this.wrapper.Close();
             }
