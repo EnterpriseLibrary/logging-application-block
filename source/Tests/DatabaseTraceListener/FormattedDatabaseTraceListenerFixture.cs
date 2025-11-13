@@ -59,26 +59,14 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         [TestInitialize]
         public void SetUp()
         {
-            var configFile = Path.Combine(
-         AppDomain.CurrentDomain.BaseDirectory,
-         "Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.dll.config"
-     );
-
-            IConfigurationSource source;
-
-            if (File.Exists(configFile))
-                source = new FileConfigurationSource(configFile, false);
-            else
-                source = new SystemConfigurationSource(false);
-
-            DatabaseFactory.SetDatabaseProviderFactory(new DatabaseProviderFactory(source));
-
+            DatabaseFactory.ClearDatabaseProviderFactory();
             ClearLogs();
         }
 
         [TestCleanup]
         public void Teardown()
         {
+            DatabaseFactory.ClearDatabaseProviderFactory();
             ClearLogs();
         }
 
