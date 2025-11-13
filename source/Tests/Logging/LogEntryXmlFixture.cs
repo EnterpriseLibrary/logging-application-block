@@ -12,7 +12,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
     [TestClass]
     public class LogEntryXmlFixture
     {
-#if !NET8_0
+#if !NET10_0
         [TestMethod]
         public void CanDeserializeLogEntryXmlUsingBinaryFormatter()
         {

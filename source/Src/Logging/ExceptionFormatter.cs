@@ -195,7 +195,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
         {
             try
             {
-#if !NET8_0
+#if !NET10_0
                 return WindowsIdentity.GetCurrent().Name;
 #else
                 return "";
