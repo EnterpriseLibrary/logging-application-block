@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-using System;
-using System.Configuration;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Configuration;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 {
@@ -58,6 +59,20 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         [TestInitialize]
         public void SetUp()
         {
+            var configFile = Path.Combine(
+         AppDomain.CurrentDomain.BaseDirectory,
+         "Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.dll.config"
+     );
+
+            IConfigurationSource source;
+
+            if (File.Exists(configFile))
+                source = new FileConfigurationSource(configFile, false);
+            else
+                source = new SystemConfigurationSource(false);
+
+            DatabaseFactory.SetDatabaseProviderFactory(new DatabaseProviderFactory(source));
+
             ClearLogs();
         }
 

@@ -68,10 +68,7 @@ after_test:
 artifacts:
 - path: 'bin\Release\EnterpriseLibrary.Logging.*.nupkg'
   name: 'EnterpriseLibrary.Logging'
-
-before_test:
-  - ps: Get-ChildItem -Recurse -Filter *.dll.config | Select-Object FullName
-  
+ 
 #on_success:
 #  - ps: git config --global credential.helper store
 #  - ps: Add-Content "$HOME\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
