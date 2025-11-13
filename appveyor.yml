@@ -11,9 +11,9 @@ install:
   # Install .NET 10 SDK (adjust version if needed)
   - ps: |
       Write-Host "Installing .NET 10 SDK..."
-      $dotnetVersion = "10.0.100"
-      Invoke-WebRequest -Uri "https://download.visualstudio.microsoft.com/download/pr/$(irm https://aka.ms/dotnet/10.0.100-sdk-win-x64).exe" -OutFile "dotnet-install.exe"
-      Start-Process -FilePath ".\dotnet-install.exe" -ArgumentList "/quiet /install" -Wait
+      $dotnetInstallScript = "$env:temp\dotnet-install.ps1"
+      Invoke-WebRequest https://dot.net/v1/dotnet-install.ps1 -OutFile $dotnetInstallScript
+      & $dotnetInstallScript -Channel 10.0 -InstallDir "C:\Program Files\dotnet" -NoPath
       dotnet --info
 
   # Existing install steps
