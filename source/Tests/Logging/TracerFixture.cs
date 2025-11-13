@@ -36,7 +36,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         public void Initialize()
         {
             var logWriter =
-#if NETCOREAPP
+#if NETCOREAPP || NET10_0
                 new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
 #else
                 new LogWriterFactory().Create();
@@ -101,7 +101,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 
         static void SetTracingFlag(bool tracingEnabled)
         {
-#if NETCOREAPP
+#if NETCOREAPP || NET10_0
             var configMap = new ExeConfigurationFileMap
             {
                 ExeConfigFilename = "Microsoft.Practices.EnterpriseLibrary.Logging.Tests.NetCore.dll.config"
