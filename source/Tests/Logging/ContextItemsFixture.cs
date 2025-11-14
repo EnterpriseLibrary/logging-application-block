@@ -21,11 +21,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         public void Setup()
         {
             var logWriter =
-#if NETCOREAPP || NET10
+
                 new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
-#else
-                new LogWriterFactory().Create();
-#endif
+
 
             Logger.Reset();
             Logger.SetLogWriter(logWriter);
