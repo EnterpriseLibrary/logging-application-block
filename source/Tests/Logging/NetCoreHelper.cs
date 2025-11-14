@@ -10,7 +10,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         public static ConfigurationSection LookupConfigSection(string sectionName)
         {
             var configMap = new ExeConfigurationFileMap();
-            configMap.ExeConfigFilename = "App.config";
+            configMap.ExeConfigFilename = "Microsoft.Practices.EnterpriseLibrary.Logging.Tests.NetCore.dll.config";
             var config = ConfigurationManager.OpenMappedExeConfiguration(configMap, ConfigurationUserLevel.None);
             return config.GetSection(sectionName);
         }
