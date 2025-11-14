@@ -20,9 +20,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestInitialize]
         public void Setup()
         {
-            Assert.Fail("SETUP RAN");
+
 
 #if NET10_0
+            Assert.Fail("SETUP RAN Net 10");
             // Manually load the XML config file used by tests
             var fileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.dll.config";
             var map = new ExeConfigurationFileMap
@@ -38,6 +39,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             var section = ConfigurationManager.GetSection("loggingConfiguration");
             Console.WriteLine(section == null ? "Missing1234" : "Loaded1234");
 #else
+    Assert.Fail("SETUP RAN Net");
     // Existing .NET Core / Framework behavior
     var logWriter =
 #if NETCOREAPP
