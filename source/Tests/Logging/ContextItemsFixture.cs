@@ -35,11 +35,17 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 
             // Create LogWriterFactory from this config
             var logWriter = new LogWriterFactory(sectionName => config.GetSection(sectionName)).Create();
-            
+
             var section = ConfigurationManager.GetSection("loggingConfiguration");
             Console.WriteLine(section == null ? "Missing1234" : "Loaded1234");
 #else
-    Assert.Fail("SETUP RAN Net");
+
+#if NETCOREAPP
+Assert.Fail("SETUP RAN Netcoreapp");
+#else
+Assert.Fail("SETUP RAN Net");
+#endif
+    
     // Existing .NET Core / Framework behavior
     var logWriter =
 #if NETCOREAPP
@@ -64,12 +70,6 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestMethod]
         public void AddItemToCallContext()
         {
-#if NET10_0
-            Assert.Fail("AddItemToCallContext RAN Net 10");
-
-#else
-            Assert.Fail("AddItemToCallContext RAN Net 10");
-#endif
             ContextItems item = new ContextItems();
             item.SetContextItem("AppVersion", "1234");
 
