@@ -32,8 +32,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Distributor.Tests
             AppDomain.CurrentDomain.SetData("APPBASE", Environment.CurrentDirectory);
 
             logWriter =
-
+#if NETCOREAPP || NET5_0_OR_GREATER
                 new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+               new LogWriterFactory().Create();
+#endif
 
             MockTraceListener.Reset();
             ErrorsMockTraceListener.Reset();
