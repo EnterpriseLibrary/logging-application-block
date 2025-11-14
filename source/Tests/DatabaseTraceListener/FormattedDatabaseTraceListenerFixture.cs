@@ -182,6 +182,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         }
 
         [TestMethod]
+        public void PrintActualConfigFile()
+        {
+            Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+        }
+
+        [TestMethod]
         public void LogToDatabaseUsingDirectObjectOnlyResultsInOneMessage()
         {
             FormattedDatabaseTraceListener listener = new FormattedDatabaseTraceListener(new SqlDatabase(connectionString), "WriteLog", "AddCategory", new TextFormatter("TEST{newline}TEST"));
