@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
@@ -190,6 +191,18 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.AreEqual(typeof(MockCustomTraceListener), listener.GetType());
             Assert.IsNull(((MockCustomTraceListener)listener).Formatter);
             Assert.AreEqual(attributeValue, ((MockCustomTraceListener)listener).Attribute);
+        }
+
+        [TestMethod]
+        public void PrintConfigInformation()
+        {
+            Console.WriteLine("APP_CONFIG_FILE: " + AppDomain.CurrentDomain.GetData("APP_CONFIG_FILE"));
+            Console.WriteLine("APPBASE: " + AppDomain.CurrentDomain.GetData("APPBASE"));
+            Console.WriteLine("CurrentDirectory: " + Environment.CurrentDirectory);
+            Console.WriteLine("Loaded Config: " + AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+
+            Console.WriteLine("\nLoaded config content:\n");
+            Console.WriteLine(File.ReadAllText(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
         }
 #endif 
 
