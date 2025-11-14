@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-using System;
-using System.Collections;
-using System.Diagnostics;
-using System.Runtime.Remoting.Messaging;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport;
+using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Practices.EnterpriseLibrary.Logging.TestSupport.TraceListeners;
+using System;
+using System.Collections;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
 {
@@ -17,11 +20,27 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestInitialize]
         public void Setup()
         {
-            var logWriter =
-#if NETCOREAPP
-                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#if NET10_0
+            // Manually load the XML config file used by tests
+            var fileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.dll.config";
+            var map = new ExeConfigurationFileMap
+            {
+                ExeConfigFilename = Path.Combine(AppContext.BaseDirectory, fileName)
+            };
+
+            var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+
+            // Create LogWriterFactory from this config
+            var logWriter = new LogWriterFactory(sectionName => config.GetSection(sectionName)).Create();
+
 #else
-                new LogWriterFactory().Create();
+    // Existing .NET Core / Framework behavior
+    var logWriter =
+#if NETCOREAPP
+        new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
+#else
+        new LogWriterFactory().Create();
+#endif
 #endif
 
             Logger.Reset();
