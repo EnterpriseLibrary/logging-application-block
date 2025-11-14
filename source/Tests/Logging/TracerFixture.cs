@@ -36,11 +36,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         public void Initialize()
         {
             var logWriter =
-#if NETCOREAPP || NET10_0
+
                 new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
-#else
-                new LogWriterFactory().Create();
-#endif
+
             Logger.SetLogWriter(logWriter, false);
         }
 

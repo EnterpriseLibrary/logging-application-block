@@ -188,11 +188,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Distributor.Tests
             LogSource source = null;
 
             LogWriter logWriter =
-#if NETCOREAPP
+
                 new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
-#else
-                new LogWriterFactory().Create();
-#endif
+ 
 
             try
             {

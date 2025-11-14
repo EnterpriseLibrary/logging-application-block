@@ -24,11 +24,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         public void SetUp()
         {
             var logWriter =
-#if NETCOREAPP
+
                 new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
-#else
-                new LogWriterFactory().Create();
-#endif
+
 
             Logger.SetLogWriter(logWriter, false);
             MockTraceListener.Reset();

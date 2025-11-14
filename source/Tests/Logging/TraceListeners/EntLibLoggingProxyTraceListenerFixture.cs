@@ -22,11 +22,9 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.Tests
         public void SetUp()
         {
             var logWriter =
-#if NETCOREAPP
+
                 new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
-#else
-                new LogWriterFactory().Create();
-#endif
+
 
             proxy = new EntLibLoggingProxyTraceListener();
             Logger.SetLogWriter(logWriter, false);
