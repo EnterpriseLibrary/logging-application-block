@@ -34,7 +34,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             var logWriter = new LogWriterFactory(sectionName => config.GetSection(sectionName)).Create();
             
             var section = ConfigurationManager.GetSection("loggingConfiguration");
-            Console.WriteLine(section == null ? "Missing" : "Loaded");
+            Console.WriteLine(section == null ? "Missing1234" : "Loaded1234");
 #else
     // Existing .NET Core / Framework behavior
     var logWriter =
