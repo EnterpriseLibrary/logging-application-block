@@ -20,39 +20,11 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestInitialize]
         public void Setup()
         {
-
-
-#if NET10_0
-            Assert.Fail("SETUP RAN Net 10");
-            // Manually load the XML config file used by tests
-            var fileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.dll.config";
-            var map = new ExeConfigurationFileMap
-            {
-                ExeConfigFilename = Path.Combine(AppContext.BaseDirectory, fileName)
-            };
-
-            var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-
-            // Create LogWriterFactory from this config
-            var logWriter = new LogWriterFactory(sectionName => config.GetSection(sectionName)).Create();
-
-            var section = ConfigurationManager.GetSection("loggingConfiguration");
-            Console.WriteLine(section == null ? "Missing1234" : "Loaded1234");
+            var logWriter =
+#if NETCOREAPP || NET10
+                new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
 #else
-
-#if NETCOREAPP
-Assert.Fail("SETUP RAN Netcoreapp");
-#else
-Assert.Fail("SETUP RAN Net");
-#endif
-    
-    // Existing .NET Core / Framework behavior
-    var logWriter =
-#if NETCOREAPP
-        new LogWriterFactory(NetCoreHelper.LookupConfigSection).Create();
-#else
-        new LogWriterFactory().Create();
-#endif
+                new LogWriterFactory().Create();
 #endif
 
             Logger.Reset();
