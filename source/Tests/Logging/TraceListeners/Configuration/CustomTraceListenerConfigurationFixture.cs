@@ -192,19 +192,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.IsNull(((MockCustomTraceListener)listener).Formatter);
             Assert.AreEqual(attributeValue, ((MockCustomTraceListener)listener).Attribute);
         }
-
-        [TestMethod]
-        public void PrintConfigInformation()
-        {
-            Console.WriteLine("APP_CONFIG_FILE: " + AppDomain.CurrentDomain.GetData("APP_CONFIG_FILE"));
-            Console.WriteLine("APPBASE: " + AppDomain.CurrentDomain.GetData("APPBASE"));
-            Console.WriteLine("CurrentDirectory: " + Environment.CurrentDirectory);
-            Console.WriteLine("Loaded Config: " + AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
-
-            Console.WriteLine("\nLoaded config content:\n");
-            Console.WriteLine(File.ReadAllText(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
-            Assert.IsTrue(false);
-        }
+ 
 #endif 
 
         [TestMethod]
