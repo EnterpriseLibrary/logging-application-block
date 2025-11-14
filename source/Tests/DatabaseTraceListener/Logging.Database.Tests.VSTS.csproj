@@ -63,12 +63,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="App.config">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		
 		<None Include="..\..\Logging.licenseheader">
 			<Link>Logging.licenseheader</Link>
-		</None>
-
-		<None Include="$(PreAssemblyName).Logging.Database.Tests.dll.config">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 
 		<Content Include="test-database.exe.config">
