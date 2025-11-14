@@ -25,7 +25,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         void ClearLogs()
         {
             //clear the log entries from the database
-            DatabaseProviderFactory factory = new DatabaseProviderFactory();
+            DatabaseProviderFactory factory = new DatabaseProviderFactory(NetCoreHelper.LookupConfigSection);
             Data.Database db = factory.CreateDefault();
             DbCommand command = db.GetStoredProcCommand("ClearLogs");
             try
