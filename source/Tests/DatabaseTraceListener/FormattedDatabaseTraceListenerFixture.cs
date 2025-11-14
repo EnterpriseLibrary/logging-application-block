@@ -25,7 +25,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         void ClearLogs()
         {
             // clear the log entries from the database
-            DatabaseProviderFactory factory = new DatabaseProviderFactory(NetCoreHelper.LookupConfigSection);
+            DatabaseProviderFactory factory = new DatabaseProviderFactory();
             Data.Database db = factory.CreateDefault();
 
             DbCommand command = db.GetStoredProcCommand("ClearLogs");
@@ -41,7 +41,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 
         string GetLastLogMessage(string databaseName)
         {
-            DatabaseProviderFactory factory = new DatabaseProviderFactory(NetCoreHelper.LookupConfigSection);
+            DatabaseProviderFactory factory = new DatabaseProviderFactory();
             Data.Database db = ((databaseName == null) || (databaseName.Length == 0)) ? factory.CreateDefault() : factory.Create(databaseName);
             DbCommand command = db.GetSqlStringCommand("SELECT TOP 1 FormattedMessage FROM Log ORDER BY TimeStamp DESC");
             string messageContents = Convert.ToString(db.ExecuteScalar(command));
@@ -50,7 +50,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 
         int GetNumberOfLogMessage(string databaseName)
         {
-            DatabaseProviderFactory factory = new DatabaseProviderFactory(NetCoreHelper.LookupConfigSection);
+            DatabaseProviderFactory factory = new DatabaseProviderFactory();
             Data.Database db = ((databaseName == null) || (databaseName.Length == 0)) ? factory.CreateDefault() : factory.Create(databaseName);
             DbCommand command = db.GetSqlStringCommand("SELECT COUNT(*) FROM Log");
             int numMessages = Convert.ToInt32(db.ExecuteScalar(command));
