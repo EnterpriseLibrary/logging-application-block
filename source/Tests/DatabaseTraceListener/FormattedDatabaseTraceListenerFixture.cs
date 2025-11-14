@@ -27,7 +27,8 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
             //clear the log entries from the database
             var configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.dll.config");
             var configSource = new FileConfigurationSource(configFile);
-
+            Assert.Fail("file exist:" + File.Exists(configFile));
+            Assert.Fail("file path:" + configFile);
             DatabaseProviderFactory factory = new DatabaseProviderFactory(configSource);
             Data.Database db = factory.CreateDefault();
             DbCommand command = db.GetStoredProcCommand("ClearLogs");
