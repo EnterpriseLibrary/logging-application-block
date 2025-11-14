@@ -175,6 +175,13 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         }
 
         [TestMethod]
+        public void PrintConfigErrors()
+        {
+            var errors = ConfigurationManager.GetSection("dataConfiguration");
+            Console.WriteLine(errors == null ? "dataConfiguration not loaded" : "dataConfiguration LOADED");
+        }
+
+        [TestMethod]
         public void LogToDatabaseUsingDirectObjectOnlyResultsInOneMessage()
         {
             FormattedDatabaseTraceListener listener = new FormattedDatabaseTraceListener(new SqlDatabase(connectionString), "WriteLog", "AddCategory", new TextFormatter("TEST{newline}TEST"));
