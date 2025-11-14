@@ -203,6 +203,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
 
             Console.WriteLine("\nLoaded config content:\n");
             Console.WriteLine(File.ReadAllText(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
+            Assert.IsTrue(false);
         }
 #endif 
 
