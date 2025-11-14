@@ -25,7 +25,8 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         void ClearLogs()
         {
             //clear the log entries from the database
-            var configSource = new FileConfigurationSource("Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.dll.config");
+            var configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests.dll.config");
+            var configSource = new FileConfigurationSource(configFile);
 
             DatabaseProviderFactory factory = new DatabaseProviderFactory(configSource);
             Data.Database db = factory.CreateDefault();
