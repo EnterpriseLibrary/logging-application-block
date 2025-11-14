@@ -64,6 +64,12 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestMethod]
         public void AddItemToCallContext()
         {
+#if NET10_0
+            Assert.Fail("AddItemToCallContext RAN Net 10");
+
+#else
+            Assert.Fail("AddItemToCallContext RAN Net 10");
+#endif
             ContextItems item = new ContextItems();
             item.SetContextItem("AppVersion", "1234");
 
