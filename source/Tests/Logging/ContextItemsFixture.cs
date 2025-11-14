@@ -20,6 +20,8 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
         [TestInitialize]
         public void Setup()
         {
+            Assert.Fail("SETUP RAN");
+
 #if NET10_0
             // Manually load the XML config file used by tests
             var fileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.dll.config";
