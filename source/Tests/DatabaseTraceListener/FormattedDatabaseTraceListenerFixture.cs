@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. See License.txt in the project root for license information.
 
-using System;
-using System.Configuration;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Configuration;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 
 namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 {
@@ -23,9 +24,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 
         void ClearLogs()
         {
-            //clear the log entries from the database
+            // clear the log entries from the database
             DatabaseProviderFactory factory = new DatabaseProviderFactory();
             Data.Database db = factory.CreateDefault();
+
             DbCommand command = db.GetStoredProcCommand("ClearLogs");
             try
             {
@@ -58,12 +60,14 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         [TestInitialize]
         public void SetUp()
         {
+            DatabaseFactory.ClearDatabaseProviderFactory();
             ClearLogs();
         }
 
         [TestCleanup]
         public void Teardown()
         {
+            DatabaseFactory.ClearDatabaseProviderFactory();
             ClearLogs();
         }
 
@@ -169,6 +173,8 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
 
             Assert.AreEqual("test message", messageContents);
         }
+
+      
 
         [TestMethod]
         public void LogToDatabaseUsingDirectObjectOnlyResultsInOneMessage()

@@ -44,7 +44,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging
         {
         }
 
-#if !NET8_0
+#if !NET10_0
         
 
         /// <summary>

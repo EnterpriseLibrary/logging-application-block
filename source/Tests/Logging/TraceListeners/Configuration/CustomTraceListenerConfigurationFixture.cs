@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Common.TestSupport.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Configuration;
@@ -191,6 +192,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests.TraceListeners.Con
             Assert.IsNull(((MockCustomTraceListener)listener).Formatter);
             Assert.AreEqual(attributeValue, ((MockCustomTraceListener)listener).Attribute);
         }
+ 
 #endif 
 
         [TestMethod]

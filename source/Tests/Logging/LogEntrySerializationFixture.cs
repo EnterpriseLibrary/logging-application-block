@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-#if NET8_0
+#if NET10_0
 using System.Text.Json;
 #endif
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,7 +29,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             Serialize(entry);
         }
 
-#if !NET8_0
+#if !NET10_0
         [TestMethod]
         [ExpectedException(typeof(SerializationException))]
         public void CannotSerializeDerivedList()
@@ -81,7 +81,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Tests
             AssertAreEqual(entry.Categories, deserializedEntry.Categories);
         }
 
-#if NET8_0
+#if NET10_0
         private static byte[] Serialize(object entry)
         {
 

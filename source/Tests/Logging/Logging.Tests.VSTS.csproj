@@ -2,7 +2,7 @@
   <Import Project="..\..\..\package.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>net47;netcoreapp3.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net47;netcoreapp3.0;net10.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
 
     <AssemblyVersion>$(MajorVersion).0.0.0</AssemblyVersion>
@@ -14,9 +14,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.4.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.4.3" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -35,7 +35,7 @@
 
   </ItemGroup>
 
-  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp')) AND  '$(TargetFramework)' != 'net8.0'">
+  <ItemGroup Condition="!$(TargetFramework.StartsWith('netstandard')) AND !$(TargetFramework.StartsWith('netcoreapp')) AND  '$(TargetFramework)' != 'net10.0'">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Management" />
@@ -43,7 +43,7 @@
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp')) OR '$(TargetFramework)' == 'net8.0'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard')) OR $(TargetFramework.StartsWith('netcoreapp')) OR '$(TargetFramework)' == 'net10.0'">
     <Compile Remove="**\*Msmq*.cs" />
     <Compile Remove="**\*EventLog*.cs" />
     <Compile Remove="**\*Desktop*.cs" />
@@ -57,10 +57,6 @@
   <ItemGroup>
     <None Include="..\..\Logging.licenseheader">
       <Link>Logging.licenseheader</Link>
-    </None>
-
-    <None Include="$(PreAssemblyName).Logging.Tests.dll.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
 
     <Compile Include="..\..\Src\Logging\NativeMethods.cs">
