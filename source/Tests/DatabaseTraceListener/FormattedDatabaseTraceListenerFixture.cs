@@ -61,7 +61,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         public void SetUp()
         {
             DatabaseFactory.ClearDatabaseProviderFactory();
-            //ClearLogs();
+            ClearLogs();
         }
 
         [TestCleanup]
@@ -174,21 +174,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
             Assert.AreEqual("test message", messageContents);
         }
 
-        [TestMethod]
-        public void PrintConfigErrors()
-        {
-            var errors = ConfigurationManager.GetSection("dataConfiguration");
-            Console.WriteLine(errors == null ? "dataConfiguration not loaded" : "dataConfiguration LOADED");
-        }
-
-        [TestMethod]
-        public void PrintActualConfigFile()
-        {
-            var path = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-            Console.WriteLine("Config path: " + path);
-            Console.WriteLine("Config content:");
-            Console.WriteLine(File.ReadAllText(path));
-        }
+      
 
         [TestMethod]
         public void LogToDatabaseUsingDirectObjectOnlyResultsInOneMessage()
