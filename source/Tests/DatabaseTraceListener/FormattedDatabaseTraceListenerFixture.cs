@@ -184,7 +184,10 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         [TestMethod]
         public void PrintActualConfigFile()
         {
-            Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile);
+            var path = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            Console.WriteLine("Config path: " + path);
+            Console.WriteLine("Config content:");
+            Console.WriteLine(File.ReadAllText(path));
         }
 
         [TestMethod]
