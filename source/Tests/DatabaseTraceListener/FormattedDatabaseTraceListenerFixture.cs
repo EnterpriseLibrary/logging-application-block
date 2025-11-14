@@ -61,7 +61,7 @@ namespace Microsoft.Practices.EnterpriseLibrary.Logging.Database.Tests
         public void SetUp()
         {
             DatabaseFactory.ClearDatabaseProviderFactory();
-            ClearLogs();
+            //ClearLogs();
         }
 
         [TestCleanup]
